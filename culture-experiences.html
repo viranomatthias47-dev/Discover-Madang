@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover Madang’s living cultures: village visits, sing-sings, traditional crafts, festivals and responsible tourism experiences in Papua New Guinea.">
+  <title>Culture &amp; Experiences | Discover Madang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Page-specific styles only (accordion + experience cards). Do not put these in the shared file without PM approval. -->
+  <style>
+    /* Page hero – matches site tone */
+    .page-hero {
+      padding: var(--space-7) 0 var(--space-6);
+      background: var(--dark);
+      color: var(--white);
+    }
+    .page-hero .eyebrow { color: var(--accent); }
+    .page-hero h1 {
+      color: var(--white);
+      font-size: clamp(2.2rem, 6vw, 3.75rem);
+      max-width: 14ch;
+      margin-bottom: var(--space-3);
+    }
+    .page-hero p {
+      max-width: 52ch;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.05rem;
+    }
+
+    /* Experience cards grid */
+    .experience-grid {
+      display: grid;
+      gap: var(--space-4);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      .experience-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .experience-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .experience-card {
+      background: var(--surface);
+      border: 1px solid #D5B52E;
+      border-radius: var(--radius);
+      padding: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+    .experience-card h3 {
+      margin: 0 0 var(--space-2);
+      font-size: 1.15rem;
+    }
+    .experience-card p {
+      flex: 1;
+      color: var(--surface-muted);
+      font-size: 0.95rem;
+      margin-bottom: var(--space-3);
+    }
+    .experience-card .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-2);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--surface-muted);
+    }
+
+    /* Accordion */
+    .accordion {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--light);
+    }
+    .accordion-item + .accordion-item {
+      border-top: 1px solid var(--border);
+    }
+    .accordion-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      background: var(--light);
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .accordion-header:hover {
+      background: var(--sand);
+    }
+    .accordion-icon {
+      flex-shrink: 0;
+      transition: transform var(--transition);
+      font-size: 0.85rem;
+      color: var(--surface-muted);
+    }
+    .accordion-header[aria-expanded="true"] .accordion-icon {
+      transform: rotate(180deg);
+    }
+    .accordion-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #FFFBEE;
+    }
+    .accordion-panel.is-open {
+      max-height: 900px;
+    }
+    .accordion-content {
+      padding: 0 var(--space-4) var(--space-4);
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+    .accordion-content p + p,
+    .accordion-content p + ul {
+      margin-top: var(--space-2);
+    }
+    .accordion-content ul {
+      margin: var(--space-2) 0 0;
+      padding-left: 1.2rem;
+    }
+    .accordion-content li + li {
+      margin-top: 0.35rem;
+    }
+
+    /* Guidelines */
+    .guidelines-grid {
+      display: grid;
+      gap: var(--space-3);
+    }
+    @media (min-width: 700px) {
+      .guidelines-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .guideline-card {
+      background: var(--sand);
+      border-radius: var(--radius);
+      padding: var(--space-4);
+      border-left: 4px solid var(--secondary);
+    }
+    .guideline-card strong {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+    .guideline-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Section lead text */
+    .section-lead {
+      max-width: 58ch;
+      color: var(--muted);
+      margin-top: var(--space-2);
+      margin-bottom: var(--space-5);
+    }
+
+    /* Soft section background */
+    .section-soft {
+      background: #FFF9E6;
+    }
+  </style>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- ========== SHARED HEADER (copy from index.html) ========== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="index.html" aria-label="Discover Madang home">
+        <span class="logo-mark" aria-hidden="true">DM</span>
+        <span class="logo-text">Discover <strong>Madang</strong></span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="sr-only">Open menu</span>
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+
+      <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="attractions.html">Attractions</a></li>
+          <li><a class="active" href="culture-experiences.html" aria-current="page">Culture &amp; Experiences</a></li>
+          <li><a href="plan-your-trip.html">Plan Your Trip</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Page hero -->
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="container">
+        <p class="eyebrow">Living culture</p>
+        <h1 id="page-title">Meet the people of Madang.</h1>
+        <p>Village visits, sing-sings, traditional crafts and festivals — experiences that connect you with the communities who call this coast home.</p>
+      </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="section" aria-labelledby="intro-heading">
+      <div class="container">
+        <p class="eyebrow eyebrow-dark">A province of living cultures</p>
+        <h2 id="intro-heading">Stories still told out loud.</h2>
+        <p class="section-lead">
+          Madang is one of the most culturally diverse places on Earth. Roughly a quarter of Papua New Guinea’s languages are spoken here. From mountain communities in the Simbai highlands to coastal villages and island fishing communities, traditions of song, dance, craft and storytelling remain strong. Visitors are welcomed with genuine hospitality and the chance to experience daily life — not only staged performances.
+        </p>
+      </div>
+    </section>
+
+    <!-- Suggested experiences -->
+    <section class="section section-soft" aria-labelledby="experiences-heading">
+      <div class="container">
+        <p class="eyebrow eyebrow-dark">Ways to connect</p>
+        <h2 id="experiences-heading">Suggested experiences</h2>
+        <p class="section-lead">Save the ones that speak to you. Your choices stay in this browser so you can return to them later.</p>
+
+        <div class="experience-grid">
+          <article class="experience-card">
+            <div class="card-meta"><span>01</span><span>Half day</span></div>
+            <h3>Village visits</h3>
+            <p>Join guided trips to communities such as Bilbil, Riwo, Siar and Kranket. Meet families, watch daily rhythms and share stories over coconut and fresh produce.</p>
+            <button class="save-button" type="button" data-save-id="village-visits" aria-pressed="false">
+              <span aria-hidden="true">♡</span> <span>Save</span>
+            </button>
+          </article>
+
+          <article class="experience-card">
+            <div class="card-meta"><span>02</span><span>Craft</span></div>
+            <h3>Pottery at Bilbil</h3>
+            <p>Women of Bilbil still shape clay pots by hand using techniques passed down for generations. Watch demonstrations and learn how pottery fits into daily life and trade.</p>
+            <button class="save-button" type="button" data-save-id="pottery-bilbil" aria-pressed="false">
+              <span aria-hidden="true">♡</span> <span>Save</span>
+            </button>
+          </article>
+
+          <article class="experience-card">
+            <div class="card-meta"><span>03</span><span>Performance</span></div>
+            <h3>Cultural sing-sings</h3>
+            <p>Feel the pulse of garamut slit drums and kundu hand drums. Dancers in bilas (traditional dress) share songs and stories that keep identity and history alive.</p>
+            <button class="save-button" type="button" data-save-id="sing-sing" aria-pressed="false">
+              <span aria-hidden="true">♡</span> <span>Save</span>
+            </button>
+          </article>
+
+          <article class="experience-card">
+            <div class="card-meta"><span>04</span><span>Island day</span></div>
+            <h3>Island hopping</h3>
+            <p>Combine snorkelling with short village stops. Learn about fishing practices, local food and the slower rhythm of life on the Bismarck Sea.</p>
+            <button class="save-button" type="button" data-save-id="island-hopping" aria-pressed="false">
+              <span aria-hidden="true">♡</span> <span>Save</span>
+            </button>
+          </article>
+
+          <article class="experience-card">
+            <div class="card-meta"><span>05</span><span>Food</span></div>
+            <h3>Local food &amp; markets</h3>
+            <p>Taste fresh seafood, root crops, coconut and communal mumu-style cooking. Madang’s markets offer tropical fruit, bilums and everyday coastal ingredients.</p>
+            <button class="save-button" type="button" data-save-id="local-food" aria-pressed="false">
+              <span aria-hidden="true">♡</span> <span>Save</span>
+            </button>
+          </article>
+
+          <article class="experience-card">
+            <div class="card-meta"><span>06</span><span>Heritage</span></div>
+            <h3>Haus Tumbuna &amp; crafts</h3>
+            <p>Visit the local museum and cultural centre for carvings, ceremonial objects and history, then explore markets for bilums, shell jewellery and handmade work.</p>
+            <button class="save-button" type="button" data-save-id="haus-tumbuna" aria-pressed="false">
+              <span aria-hidden="true">♡</span> <span>Save</span>
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accordion: deeper topics -->
+    <section class="section" aria-labelledby="deeper-heading">
+      <div class="container">
+        <p class="eyebrow eyebrow-dark">Go deeper</p>
+        <h2 id="deeper-heading">Culture, festivals &amp; respect</h2>
+        <p class="section-lead">Expand each section to learn more about festivals, traditional practices and how to travel with care.</p>
+
+        <div class="accordion" id="culture-accordion">
+          <div class="accordion-item">
+            <h3>
+              <button class="accordion-header" type="button" id="acc-festivals" aria-expanded="false" aria-controls="panel-festivals">
+                Festivals &amp; celebrations
+                <span class="accordion-icon" aria-hidden="true">▼</span>
+              </button>
+            </h3>
+            <div class="accordion-panel" id="panel-festivals" role="region" aria-labelledby="acc-festivals">
+              <div class="accordion-content">
+                <p>The annual <strong>Madang Festival</strong> (usually early to mid-June) is the province’s main cultural event. Groups from across the six districts gather for sing-sing performances, canoe displays, craft markets and community celebration.</p>
+                <ul>
+                  <li><strong>Karkar Island Bilum Festival</strong> — celebrates bilum weaving with demonstrations, workshops and markets.</li>
+                  <li><strong>Bundi Komba Festival</strong> — a mountain celebration of song, spirit and seasonal food.</li>
+                  <li>Local canoe racing and coastal events also bring communities together through the year.</li>
+                </ul>
+                <p>Confirm current dates with local operators or the Madang Visitors &amp; Cultural Bureau, as schedules can change.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3>
+              <button class="accordion-header" type="button" id="acc-practices" aria-expanded="false" aria-controls="panel-practices">
+                Traditional practices &amp; crafts
+                <span class="accordion-icon" aria-hidden="true">▼</span>
+              </button>
+            </h3>
+            <div class="accordion-panel" id="panel-practices" role="region" aria-labelledby="acc-practices">
+              <div class="accordion-content">
+                <p>Many communities continue skills that shape everyday life:</p>
+                <ul>
+                  <li><strong>Pottery</strong> — Bilbil women form pots by hand and fire them in open fires.</li>
+                  <li><strong>Bilum weaving</strong> — strong, colourful string bags used for carrying food, goods and babies; designs often carry meaning.</li>
+                  <li><strong>Wood carving &amp; drums</strong> — garamuts and kundus remain central to music and communication.</li>
+                  <li><strong>Storytelling</strong> — village theatre and oral histories keep traditional knowledge alive.</li>
+                  <li><strong>Fishing &amp; gardening</strong> — coastal and island knowledge of the sea and gardens is still passed on.</li>
+                </ul>
+                <p>Buying crafts directly from makers or community markets supports livelihoods and helps keep these skills strong.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3>
+              <button class="accordion-header" type="button" id="acc-villages" aria-expanded="false" aria-controls="panel-villages">
+                Village life &amp; languages
+                <span class="accordion-icon" aria-hidden="true">▼</span>
+              </button>
+            </h3>
+            <div class="accordion-panel" id="panel-villages" role="region" aria-labelledby="acc-villages">
+              <div class="accordion-content">
+                <p>Madang’s cultural landscape is exceptionally varied. Mountain communities live on high ridges, river people build stilt houses, and coastal and island groups specialise in fishing and gardening. Languages and customs can change over short distances.</p>
+                <p>Visitors are usually met with warmth. Simple Tok Pisin greetings such as “Gude” (good day) and “Tenkyu” (thank you) are appreciated. Always ask before photographing people, especially during ceremonies, and follow the guidance of local hosts.</p>
+                <p>Accessible villages and islands for cultural visits include Bilbil, Riwo, Siar, Kranket and communities around Madang harbour and the north coast.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h3>
+              <button class="accordion-header" type="button" id="acc-responsible" aria-expanded="false" aria-controls="panel-responsible">
+                Responsible tourism guidelines
+                <span class="accordion-icon" aria-hidden="true">▼</span>
+              </button>
+            </h3>
+            <div class="accordion-panel" id="panel-responsible" role="region" aria-labelledby="acc-responsible">
+              <div class="accordion-content">
+                <p>Respectful travel protects culture and ensures communities benefit:</p>
+                <ul>
+                  <li>Travel with reputable local operators who partner fairly with villages.</li>
+                  <li>Ask permission before photographing people or ceremonies.</li>
+                  <li>Dress modestly in villages (shoulders and knees covered is a good guide).</li>
+                  <li>Buy crafts and produce directly from makers when possible.</li>
+                  <li>Do not give money or gifts to children; support community projects through operators if you wish to contribute.</li>
+                  <li>Take all rubbish with you and avoid single-use plastics where you can.</li>
+                  <li>Listen to guides about sacred or restricted places.</li>
+                  <li>Be patient — village time often runs differently from city clocks.</li>
+                </ul>
+                <p>Done well, cultural tourism provides income, pride and reasons to keep traditions strong for the next generation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Travel with respect -->
+    <section class="section section-soft" aria-labelledby="respect-heading">
+      <div class="container">
+        <p class="eyebrow eyebrow-dark">Travel with care</p>
+        <h2 id="respect-heading">Travel with respect</h2>
+        <p class="section-lead">A few simple habits make a big difference for the people who welcome you.</p>
+
+        <div class="guidelines-grid">
+          <div class="guideline-card">
+            <strong>Support local communities</strong>
+            <p>Choose operators who share benefits fairly and employ local guides and performers.</p>
+          </div>
+          <div class="guideline-card">
+            <strong>Ask before you photograph</strong>
+            <p>A smile and a clear request go a long way. Some people or ceremonies prefer not to be photographed.</p>
+          </div>
+          <div class="guideline-card">
+            <strong>Leave no trace</strong>
+            <p>Take all rubbish with you and minimise single-use plastics on village and island visits.</p>
+          </div>
+        </div>
+
+        <p style="margin-top: var(--space-5);">
+          <a class="button button-primary" href="plan-your-trip.html">Plan your cultural itinerary <span aria-hidden="true">→</span></a>
+          <a class="button button-secondary" href="contact.html" style="margin-left: 0.5rem;">Enquire about tours</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== SHARED FOOTER (copy from index.html) ========== -->
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <a class="site-logo site-logo-footer" href="index.html" aria-label="Discover Madang home">
+          <span class="logo-mark" aria-hidden="true">DM</span>
+          <span class="logo-text">Discover <strong>Madang</strong></span>
+        </a>
+        <p>Find the extraordinary in Papua New Guinea's northern coast.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h3>Explore</h3>
+          <a href="attractions.html">Attractions</a>
+          <a href="culture-experiences.html">Culture &amp; Experiences</a>
+        </div>
+        <div>
+          <h3>Travel</h3>
+          <a href="plan-your-trip.html">Plan Your Trip</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="current-year">2026</span> Discover Madang. Travel with respect.</p>
+      <a href="#main-content">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- Page-specific: accordion only. Save buttons use the shared main.js localStorage logic. -->
+  <script>
+    (function () {
+      'use strict';
+      const accordion = document.getElementById('culture-accordion');
+      if (!accordion) return;
+
+      accordion.addEventListener('click', function (e) {
+        const btn = e.target.closest('.accordion-header');
+        if (!btn) return;
+
+        const panel = document.getElementById(btn.getAttribute('aria-controls'));
+        if (!panel) return;
+
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+        // Close other panels (single-open)
+        accordion.querySelectorAll('.accordion-header').forEach(function (other) {
+          if (other === btn) return;
+          other.setAttribute('aria-expanded', 'false');
+          const otherPanel = document.getElementById(other.getAttribute('aria-controls'));
+          if (otherPanel) otherPanel.classList.remove('is-open');
+        });
+
+        btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+        panel.classList.toggle('is-open', !isOpen);
+      });
+    })();
+  </script>
+</body>
+</html>
