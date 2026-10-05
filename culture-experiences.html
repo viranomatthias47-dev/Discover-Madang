@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <!-- Page-specific styles only (accordion + experience cards). Do not put these in the shared file without PM approval. -->
+  <!-- Page-specific styles only. Do not put these in the shared file without PM approval. -->
   <style>
     /* Page hero – matches site tone */
     .page-hero {
@@ -137,6 +137,48 @@
       margin-top: 0.35rem;
     }
 
+    /* Recommended sites */
+    .recommend-grid {
+      display: grid;
+      gap: var(--space-4);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      .recommend-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .recommend-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .recommend-card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .recommend-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: var(--sand);
+    }
+    .recommend-card .card-body {
+      padding: var(--space-4);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .recommend-card h3 {
+      margin: 0 0 var(--space-2);
+      font-size: 1.1rem;
+    }
+    .recommend-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      flex: 1;
+    }
+
     /* Guidelines */
     .guidelines-grid {
       display: grid;
@@ -198,7 +240,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="attractions.html">Attractions</a></li>
           <li><a class="active" href="culture-experiences.html" aria-current="page">Culture &amp; Experiences</a></li>
-          <li><a href="plan-your-trip-preview.html">Plan Your Trip</a></li>
+          <li><a href="plan-your-trip.html">Plan Your Trip</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -385,6 +427,73 @@
       </div>
     </section>
 
+    <!-- Recommended sites -->
+    <section class="section section-soft" aria-labelledby="recommend-heading">
+      <div class="container">
+        <p class="eyebrow eyebrow-dark">Places to begin</p>
+        <h2 id="recommend-heading">Recommended sites to visit</h2>
+        <p class="section-lead">Scenic landmarks, nature reserves, islands and coastal stays — places that pair well with Madang’s cultural experiences.</p>
+
+        <div class="recommend-grid">
+          <article class="recommend-card">
+            <img src="Coastwatchers-Memorial-Lighthouse.jpg" alt="Coastwatchers Memorial Lighthouse overlooking Madang harbour">
+            <div class="card-body">
+              <h3>Coastwatchers Memorial Lighthouse</h3>
+              <p>A tall beacon built in 1959 on the peninsula to honour Allied coastwatchers of World War II. It offers panoramic views of the harbour and nearby islands.</p>
+            </div>
+          </article>
+
+          <article class="recommend-card">
+            <img src="Machine-Gun-Beach.jpg" alt="Sandy shore and shade trees at Machine Gun Beach, Madang">
+            <div class="card-body">
+              <h3>Machine Gun Beach</h3>
+              <p>A quiet coastal park with a calm sandy beach, picnic spots under large shade trees, and a historic World War II machine gun left from the conflict.</p>
+            </div>
+          </article>
+
+          <article class="recommend-card">
+            <img src="Balek-Wildlife-Sanctuary.jpg" alt="Sulphur stream and rainforest at Balek Wildlife Sanctuary">
+            <div class="card-body">
+              <h3>Balek Wildlife Sanctuary</h3>
+              <p>Along the south coast road: a sulphur hot-spring stream, large eels and turtles, limestone caves and surrounding rainforest — a short nature stop from town.</p>
+            </div>
+          </article>
+
+          <article class="recommend-card">
+            <img src="Pig-Island-Kranket-Island.jpg" alt="Clear tropical water and coral at Pig Island and Kranket Island">
+            <div class="card-body">
+              <h3>Pig Island &amp; Kranket Island</h3>
+              <p>Idyllic offshore tropical islands with crystal-clear water and vibrant coral gardens. Popular for swimming, snorkelling and easy day trips from Madang.</p>
+            </div>
+          </article>
+
+          <article class="recommend-card">
+            <img src="Siar-Island.jpg" alt="Quiet beach and coastal village on Siar Island">
+            <div class="card-body">
+              <h3>Siar Island</h3>
+              <p>A tranquil local island connected by shallow waters. Great for day trips, walking along the beach and experiencing quiet coastal village life.</p>
+            </div>
+          </article>
+
+          <article class="recommend-card">
+            <img src="Tabad-Island.jpg" alt="Turquoise water and white sand on Tabad Island near Riwo">
+            <div class="card-body">
+              <h3>Tabad Island</h3>
+              <p>A hidden paradise off the Riwo north coast: clear turquoise water, white sand and healthy reef. Uncommercialised — pack food and water, arrange a banana boat from Riwo, and respect local kastom fees.</p>
+            </div>
+          </article>
+
+          <article class="recommend-card">
+            <img src="Jais-Aben-Resort.jpg" alt="Beachfront bungalows and lawns at Jais Aben Resort on the north coast">
+            <div class="card-body">
+              <h3>Jais Aben Resort</h3>
+              <p>A waterfront retreat about 20 km north of town on a former coconut plantation. Beachfront bungalows, healthy fringing reef, a WWII plane wreck just offshore, and grounds for kayaking and relaxed stays.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Travel with respect -->
     <section class="section section-soft" aria-labelledby="respect-heading">
       <div class="container">
@@ -408,7 +517,7 @@
         </div>
 
         <p style="margin-top: var(--space-5);">
-          <a class="button button-primary" href="plan-your-trip-preview.html">Plan your cultural itinerary <span aria-hidden="true">→</span></a>
+          <a class="button button-primary" href="plan-your-trip.html">Plan your cultural itinerary <span aria-hidden="true">→</span></a>
           <a class="button button-secondary" href="contact.html" style="margin-left: 0.5rem;">Enquire about tours</a>
         </p>
       </div>
@@ -433,7 +542,7 @@
         </div>
         <div>
           <h3>Travel</h3>
-          <a href="plan-your-trip-preview.html">Plan Your Trip</a>
+          <a href="plan-your-trip.html">Plan Your Trip</a>
           <a href="contact.html">Contact</a>
         </div>
       </div>
@@ -460,7 +569,6 @@
 
         const isOpen = btn.getAttribute('aria-expanded') === 'true';
 
-        // Close other panels (single-open)
         accordion.querySelectorAll('.accordion-header').forEach(function (other) {
           if (other === btn) return;
           other.setAttribute('aria-expanded', 'false');
