@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Discover Madang – send an enquiry about your trip to Papua New Guinea’s ocean paradise.">
+    <title>Contact & Enquiry | Discover Madang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="site-logo" href="index.html" aria-label="Discover Madang home">
+            <span class="logo-mark" aria-hidden="true">DM</span>
+            <span class="logo-text">Discover <strong>Madang</strong></span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+            <span class="sr-only">Open menu</span>
+            <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+
+        <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="attractions.html">Attractions</a></li>
+                <li><a href="culture-experiences.html">Culture &amp; Experiences</a></li>
+                <li><a href="plan-your-trip.html">Plan Your Trip</a></li>
+                <li><a class="active" href="contact.html" aria-current="page">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content">
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <p class="eyebrow">We’re here to help</p>
+            <h1>Contact &amp; Enquiry</h1>
+            <p class="page-hero-copy">Have a question about diving, islands, culture or planning your visit? Send us a message and we’ll get back to you within 1–2 business days.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="section contact-section">
+        <div class="container contact-grid">
+
+            <!-- Left: Contact Info -->
+            <aside class="contact-info">
+                <h2>Get in touch</h2>
+                <p>Whether you’re dreaming of a quiet island escape or a full diving adventure, we’re happy to help shape your journey.</p>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <span class="contact-icon" aria-hidden="true">✉</span>
+                        <div>
+                            <strong>Email</strong>
+                            <a href="mailto:hello@discovermadang.com">hello@discovermadang.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon" aria-hidden="true">☎</span>
+                        <div>
+                            <strong>Phone</strong>
+                            <a href="tel:+6754221234">+675 422 1234</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon" aria-hidden="true">⌖</span>
+                        <div>
+                            <strong>Location</strong>
+                            <span>Madang Town, Madang Province<br>Papua New Guinea</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-note">
+                    <p><strong>Response time:</strong> We aim to reply to all enquiries within 1–2 business days.</p>
+                </div>
+            </aside>
+
+            <!-- Right: Enquiry Form -->
+            <div class="contact-form-wrap">
+                <form class="enquiry-form" id="enquiry-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="full-name">Full name <span class="required">*</span></label>
+                            <input type="text" id="full-name" name="full-name" required autocomplete="name" placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone number</label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="+675 or international">
+                        </div>
+                        <div class="form-group">
+                            <label for="travellers">Number of travellers</label>
+                            <select id="travellers" name="travellers">
+                                <option value="">Select…</option>
+                                <option value="1">1 person</option>
+                                <option value="2">2 people</option>
+                                <option value="3-4">3–4 people</option>
+                                <option value="5+">5 or more</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">What is your enquiry about? <span class="required">*</span></label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Please select…</option>
+                            <option value="diving">Diving &amp; snorkelling</option>
+                            <option value="islands">Island stays &amp; day trips</option>
+                            <option value="culture">Culture &amp; village experiences</option>
+                            <option value="history">WWII history sites</option>
+                            <option value="itinerary">Help planning an itinerary</option>
+                            <option value="general">General question</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your message <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Tell us about your travel plans, dates, interests or any questions you have…"></textarea>
+                    </div>
+
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">I agree to be contacted about my enquiry. <span class="required">*</span></label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="button button-primary">Send enquiry <span aria-hidden="true">→</span></button>
+                    </div>
+
+                    <!-- Success / Error messages (controlled by JS) -->
+                    <div class="form-status" id="form-status" role="status" aria-live="polite" hidden></div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-main">
+        <div class="footer-brand">
+            <a class="site-logo site-logo-footer" href="index.html" aria-label="Discover Madang home">
+                <span class="logo-mark" aria-hidden="true">DM</span>
+                <span class="logo-text">Discover <strong>Madang</strong></span>
+            </a>
+            <p>Find the extraordinary in Papua New Guinea's northern coast.</p>
+        </div>
+        <div class="footer-links">
+            <div>
+                <h3>Explore</h3>
+                <a href="attractions.html">Attractions</a>
+                <a href="culture-experiences.html">Culture &amp; Experiences</a>
+            </div>
+            <div>
+                <h3>Travel</h3>
+                <a href="plan-your-trip.html">Plan Your Trip</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <p>© <span id="current-year">2026</span> Discover Madang. Travel with respect.</p>
+        <a href="#main-content">Back to top ↑</a>
+    </div>
+</footer>
+
+<!-- Extra styles for the contact page (can be moved into styles.css) -->
+<style>
+    .page-hero {
+        padding: var(--space-7) 0 var(--space-6);
+        background: var(--surface);
+        border-bottom: 1px solid #D5B52E;
+    }
+    .page-hero h1 {
+        margin-bottom: var(--space-3);
+        max-width: 700px;
+    }
+    .page-hero-copy {
+        max-width: 620px;
+        color: var(--surface-muted);
+        font-size: 1.1rem;
+    }
+
+    .contact-section {
+        padding-top: var(--space-7);
+    }
+    .contact-grid {
+        display: grid;
+        gap: var(--space-7);
+    }
+
+    .contact-info h2 {
+        margin-bottom: var(--space-3);
+    }
+    .contact-info > p {
+        margin-bottom: var(--space-5);
+        color: var(--muted);
+    }
+
+    .contact-details {
+        display: grid;
+        gap: var(--space-4);
+        margin-bottom: var(--space-5);
+    }
+    .contact-item {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    .contact-icon {
+        display: grid;
+        width: 2.5rem;
+        height: 2.5rem;
+        place-items: center;
+        background: var(--surface);
+        border: 1px solid #D5B52E;
+        border-radius: 50%;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+    .contact-item strong {
+        display: block;
+        margin-bottom: 0.15rem;
+        font-size: 0.85rem;
+        color: var(--surface-text);
+    }
+    .contact-item a {
+        color: var(--surface-link);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .contact-item a:hover {
+        color: var(--primary);
+    }
+
+    .contact-note {
+        padding: var(--space-4);
+        background: var(--sand);
+        border-left: 4px solid var(--primary);
+        border-radius: var(--radius);
+        font-size: 0.9rem;
+    }
+
+    .contact-form-wrap {
+        background: var(--surface);
+        border: 1px solid #D5B52E;
+        border-radius: var(--radius);
+        padding: var(--space-5);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    .enquiry-form .form-row {
+        display: grid;
+        gap: var(--space-4);
+        margin-bottom: var(--space-4);
+    }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+    .form-group label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--surface-text);
+    }
+    .required {
+        color: var(--error);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        min-height: 3rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--white);
+        color: var(--text);
+        font: inherit;
+        transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .form-group textarea {
+        min-height: 150px;
+        resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(242, 183, 5, 0.25);
+    }
+
+    .form-checkbox {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin: var(--space-4) 0;
+    }
+    .form-checkbox input {
+        width: 1.2rem;
+        height: 1.2rem;
+        margin-top: 0.2rem;
+        accent-color: var(--primary);
+    }
+
+    .form-actions {
+        margin-top: var(--space-4);
+    }
+
+    .form-status {
+        margin-top: var(--space-4);
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius);
+        font-weight: 600;
+    }
+    .form-status.success {
+        background: #E8F5E9;
+        color: var(--success);
+        border: 1px solid #A5D6A7;
+    }
+    .form-status.error {
+        background: #FFEBEE;
+        color: var(--error);
+        border: 1px solid #EF9A9A;
+    }
+
+    @media (min-width: 800px) {
+        .contact-grid {
+            grid-template-columns: 1fr 1.4fr;
+            align-items: start;
+        }
+        .enquiry-form .form-row {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>
+</body>
+</html>
