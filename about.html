@@ -11,279 +11,56 @@
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/main.js" defer></script>
   <style>
-    /* Page-specific styles — aligned with site design system */
-    .page-hero {
-      padding: var(--space-7) 0 var(--space-6);
-      background: var(--dark);
-      color: var(--white);
-    }
+    .page-hero { padding: var(--space-7) 0 var(--space-6); background: var(--dark); color: var(--white); }
     .page-hero .eyebrow { color: var(--accent); }
-    .page-hero h1 {
-      color: var(--white);
-      font-size: clamp(2.2rem, 6vw, 3.75rem);
-      max-width: 16ch;
-      margin-bottom: var(--space-3);
-    }
-    .page-hero p {
-      max-width: 54ch;
-      color: rgba(255, 255, 255, 0.85);
-      font-size: 1.05rem;
-    }
-
-    .section-lead {
-      max-width: 60ch;
-      color: var(--muted);
-      margin-top: var(--space-2);
-      margin-bottom: var(--space-5);
-    }
-
+    .page-hero h1 { color: var(--white); font-size: clamp(2.2rem, 6vw, 3.75rem); max-width: 16ch; margin-bottom: var(--space-3); }
+    .page-hero p { max-width: 54ch; color: rgba(255, 255, 255, 0.85); font-size: 1.05rem; }
+    .section-lead { max-width: 60ch; color: var(--muted); margin-top: var(--space-2); margin-bottom: var(--space-5); }
     .section-soft { background: #FFF9E6; }
-
-    /* Problem / audience cards */
-    .insight-grid {
-      display: grid;
-      gap: var(--space-4);
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 700px) {
-      .insight-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    .insight-card {
-      background: var(--surface);
-      border: 1px solid #D5B52E;
-      border-radius: var(--radius);
-      padding: var(--space-5);
-    }
-    .insight-card h3 {
-      margin: 0 0 var(--space-2);
-      color: var(--surface-text);
-      font-size: 1.2rem;
-    }
-    .insight-card p,
-    .insight-card ul {
-      color: var(--surface-muted);
-      font-size: 0.95rem;
-      margin: 0;
-    }
-    .insight-card ul {
-      margin-top: var(--space-2);
-      padding-left: 1.2rem;
-    }
+    .insight-grid { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
+    @media (min-width: 700px) { .insight-grid { grid-template-columns: repeat(2, 1fr); } }
+    .insight-card { background: var(--surface); border: 1px solid #D5B52E; border-radius: var(--radius); padding: var(--space-5); }
+    .insight-card h3 { margin: 0 0 var(--space-2); color: var(--surface-text); font-size: 1.2rem; }
+    .insight-card p, .insight-card ul { color: var(--surface-muted); font-size: 0.95rem; margin: 0; }
+    .insight-card ul { margin-top: var(--space-2); padding-left: 1.2rem; }
     .insight-card li + li { margin-top: 0.35rem; }
-
-    /* Values */
-    .values-grid {
-      display: grid;
-      gap: var(--space-4);
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 640px) {
-      .values-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 900px) {
-      .values-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .value-card {
-      background: var(--surface);
-      border: 1px solid #D5B52E;
-      border-radius: var(--radius);
-      padding: var(--space-5);
-      display: flex;
-      flex-direction: column;
-      min-height: 100%;
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-    .value-card:hover,
-    .value-card:focus-within {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-    }
-    .value-icon {
-      display: grid;
-      width: 3rem;
-      height: 3rem;
-      place-items: center;
-      margin-bottom: var(--space-4);
-      color: var(--surface);
-      background: var(--surface-text);
-      border-radius: 50%;
-      font-size: 1.35rem;
-    }
-    .value-card h3 {
-      margin: 0 0 var(--space-2);
-      font-size: 1.15rem;
-      color: var(--surface-text);
-    }
-    .value-card p {
-      color: var(--surface-muted);
-      font-size: 0.95rem;
-      flex: 1;
-      margin: 0;
-    }
-
-    /* Story split */
-    .story-grid {
-      display: grid;
-      gap: var(--space-6);
-      align-items: center;
-    }
-    @media (min-width: 800px) {
-      .story-grid { grid-template-columns: 1.1fr 0.9fr; }
-    }
-    .story-image-wrap {
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    }
-    .story-image-wrap img {
-      width: 100%;
-      min-height: 280px;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Stats */
-    .stats-row {
-      display: grid;
-      gap: var(--space-4);
-      grid-template-columns: 1fr;
-      margin-top: var(--space-6);
-    }
-    @media (min-width: 600px) {
-      .stats-row { grid-template-columns: repeat(3, 1fr); }
-    }
-    .stat-item {
-      text-align: center;
-      padding: var(--space-4);
-      background: var(--sand);
-      border-radius: var(--radius);
-      border-left: 4px solid var(--secondary);
-    }
-    .stat-item strong {
-      display: block;
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(1.6rem, 4vw, 2.25rem);
-      color: var(--surface-text);
-      line-height: 1.1;
-      margin-bottom: 0.35rem;
-    }
-    .stat-item span {
-      color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    /* Offer list */
-    .offer-list {
-      display: grid;
-      gap: 0;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .offer-list li {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: var(--space-3) 0;
-      border-bottom: 1px solid var(--border);
-    }
+    .values-grid { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .values-grid { grid-template-columns: repeat(3, 1fr); } }
+    .value-card { background: var(--surface); border: 1px solid #D5B52E; border-radius: var(--radius); padding: var(--space-5); display: flex; flex-direction: column; min-height: 100%; transition: transform 180ms ease, box-shadow 180ms ease; }
+    .value-card:hover, .value-card:focus-within { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18); }
+    .value-icon { display: grid; width: 3rem; height: 3rem; place-items: center; margin-bottom: var(--space-4); color: var(--surface); background: var(--surface-text); border-radius: 50%; font-size: 1.35rem; }
+    .value-card h3 { margin: 0 0 var(--space-2); font-size: 1.15rem; color: var(--surface-text); }
+    .value-card p { color: var(--surface-muted); font-size: 0.95rem; flex: 1; margin: 0; }
+    .story-grid { display: grid; gap: var(--space-6); align-items: center; }
+    @media (min-width: 800px) { .story-grid { grid-template-columns: 1.1fr 0.9fr; } }
+    .story-image-wrap { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); }
+    .story-image-wrap img { width: 100%; min-height: 280px; object-fit: cover; display: block; }
+    .stats-row { display: grid; gap: var(--space-4); grid-template-columns: 1fr; margin-top: var(--space-6); }
+    @media (min-width: 600px) { .stats-row { grid-template-columns: repeat(3, 1fr); } }
+    .stat-item { text-align: center; padding: var(--space-4); background: var(--sand); border-radius: var(--radius); border-left: 4px solid var(--secondary); }
+    .stat-item strong { display: block; font-family: 'Poppins', sans-serif; font-size: clamp(1.6rem, 4vw, 2.25rem); color: var(--surface-text); line-height: 1.1; margin-bottom: 0.35rem; }
+    .stat-item span { color: var(--muted); font-size: 0.9rem; font-weight: 600; }
+    .offer-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+    .offer-list li { display: flex; gap: 1rem; align-items: flex-start; padding: var(--space-3) 0; border-bottom: 1px solid var(--border); }
     .offer-list li:last-child { border-bottom: 0; }
-    .offer-num {
-      flex-shrink: 0;
-      width: 2rem;
-      height: 2rem;
-      display: grid;
-      place-items: center;
-      background: var(--surface-text);
-      color: var(--surface);
-      border-radius: 50%;
-      font-family: 'Poppins', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-    .offer-list strong {
-      display: block;
-      font-family: 'Poppins', sans-serif;
-      color: var(--text);
-      margin-bottom: 0.2rem;
-    }
-    .offer-list p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin: 0;
-    }
-
-    /* FAQ accordion (JS feature) */
-    .about-accordion {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: var(--light);
-    }
-    .about-acc-item + .about-acc-item {
-      border-top: 1px solid var(--border);
-    }
-    .about-acc-header {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-3);
-      padding: var(--space-4);
-      background: var(--light);
-      border: 0;
-      cursor: pointer;
-      text-align: left;
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text);
-    }
+    .offer-num { flex-shrink: 0; width: 2rem; height: 2rem; display: grid; place-items: center; background: var(--surface-text); color: var(--surface); border-radius: 50%; font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 700; }
+    .offer-list strong { display: block; font-family: 'Poppins', sans-serif; color: var(--text); margin-bottom: 0.2rem; }
+    .offer-list p { color: var(--muted); font-size: 0.95rem; margin: 0; }
+    .about-accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--light); }
+    .about-acc-item + .about-acc-item { border-top: 1px solid var(--border); }
+    .about-acc-header { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-4); background: var(--light); border: 0; cursor: pointer; text-align: left; font-family: 'Poppins', sans-serif; font-size: 1.05rem; font-weight: 600; color: var(--text); }
     .about-acc-header:hover { background: var(--sand); }
-    .about-acc-icon {
-      flex-shrink: 0;
-      transition: transform var(--transition);
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-    .about-acc-header[aria-expanded="true"] .about-acc-icon {
-      transform: rotate(180deg);
-    }
-    .about-acc-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      background: #FFFBEE;
-    }
+    .about-acc-icon { flex-shrink: 0; transition: transform var(--transition); font-size: 0.85rem; color: var(--muted); }
+    .about-acc-header[aria-expanded="true"] .about-acc-icon { transform: rotate(180deg); }
+    .about-acc-panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #FFFBEE; }
     .about-acc-panel.is-open { max-height: 480px; }
-    .about-acc-content {
-      padding: 0 var(--space-4) var(--space-4);
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
+    .about-acc-content { padding: 0 var(--space-4) var(--space-4); color: var(--muted); font-size: 0.98rem; }
     .about-acc-content p + p { margin-top: var(--space-2); }
-
-    /* Team note */
-    .team-note {
-      padding: var(--space-5);
-      background: var(--surface);
-      border: 1px solid #D5B52E;
-      border-radius: var(--radius);
-      max-width: 720px;
-    }
-    .team-note h3 {
-      margin: 0 0 var(--space-2);
-      color: var(--surface-text);
-    }
-    .team-note p {
-      color: var(--surface-muted);
-      font-size: 0.95rem;
-      margin: 0;
-    }
+    .team-note { padding: var(--space-5); background: var(--surface); border: 1px solid #D5B52E; border-radius: var(--radius); max-width: 720px; }
+    .team-note h3 { margin: 0 0 var(--space-2); color: var(--surface-text); }
+    .team-note p { color: var(--surface-muted); font-size: 0.95rem; margin: 0; }
   </style>
-  <script src="js/main.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -314,7 +91,6 @@
   </header>
 
   <main id="main-content">
-    <!-- Hero -->
     <section class="page-hero" aria-labelledby="about-title">
       <div class="container">
         <p class="eyebrow">Who we are</p>
@@ -323,19 +99,16 @@
       </div>
     </section>
 
-    <!-- Problem, audience & goals (rubric: Problem, Audience and Requirement) -->
     <section class="section" aria-labelledby="insight-heading">
       <div class="container">
         <p class="eyebrow eyebrow-dark">Project insight</p>
         <h2 id="insight-heading">Problem, audience and goals</h2>
-        <p class="section-lead">
-          Discover Madang responds to a clear opportunity: travellers interested in diving, islands and culture often struggle to find coherent, trustworthy information about Madang Province in one place.
-        </p>
+        <p class="section-lead">Discover Madang responds to a clear opportunity: travellers interested in diving, islands and culture often struggle to find coherent, trustworthy information about Madang Province in one place.</p>
 
         <div class="insight-grid">
           <article class="insight-card">
             <h3>The problem</h3>
-            <p>Information about Madang is scattered across outdated pages, social posts and operator sites. First-time visitors need clearer answers on how to arrive, what to do, how to travel respectfully and how to contact people on the ground.</p>
+            <p>Information about Madang is scattered across outdated pages, social posts and operator sites. First-time visitors need clearer answers on how to arrive, what to do, how to travel responsibly and where local experiences really fit.</p>
           </article>
           <article class="insight-card">
             <h3>Target audience</h3>
@@ -368,19 +141,14 @@
       </div>
     </section>
 
-    <!-- Purpose / story -->
     <section class="section section-soft" aria-labelledby="purpose-heading">
       <div class="container">
         <div class="story-grid">
           <div>
             <p class="eyebrow eyebrow-dark">Our purpose</p>
             <h2 id="purpose-heading">Why this site exists</h2>
-            <p class="section-lead">
-              Madang is often described as one of the most beautiful places in the Pacific — and one of the least visited. This site helps travellers find clear, honest information about diving, islands, culture and practical planning so more people can experience the province with care and confidence.
-            </p>
-            <p style="color: var(--muted); max-width: 58ch;">
-              We are not a booking engine. We are a guide: curated attractions, suggested itineraries, cultural context and contact paths so you can connect with local operators and communities on the ground.
-            </p>
+            <p class="section-lead">Madang is often described as one of the most beautiful places in the Pacific — and one of the least visited. This site helps travellers find clear, honest information about diving, islands, villages and the communities that shape the region.</p>
+            <p style="color: var(--muted); max-width: 58ch;">We are not a booking engine. We are a guide: curated attractions, suggested itineraries, cultural context and contact paths so you can connect with local operators and communities on your own terms.</p>
           </div>
           <div class="story-image-wrap">
             <img src="images/hero-madang.jpg" alt="Rocky coastline and turquoise ocean along the Madang coast under a clear blue sky" loading="lazy" width="800" height="500">
@@ -389,7 +157,6 @@
       </div>
     </section>
 
-    <!-- Values -->
     <section class="section" aria-labelledby="values-heading">
       <div class="container">
         <p class="eyebrow eyebrow-dark">How we work</p>
@@ -400,7 +167,7 @@
           <article class="value-card">
             <span class="value-icon" aria-hidden="true">◈</span>
             <h3>Respect for place and people</h3>
-            <p>Madang’s strength is its communities and environments. We prioritise accurate cultural context, responsible travel advice and language that treats hosts as partners, not backdrops.</p>
+            <p>Madang’s strength is its communities and environments. We prioritise accurate cultural context, responsible travel advice and language that treats hosts as partners, not backdrop.</p>
           </article>
           <article class="value-card">
             <span class="value-icon" aria-hidden="true">◎</span>
@@ -416,14 +183,11 @@
       </div>
     </section>
 
-    <!-- About Madang Province -->
     <section class="section section-soft" aria-labelledby="province-heading">
       <div class="container">
         <p class="eyebrow eyebrow-dark">The place</p>
         <h2 id="province-heading">About Madang Province</h2>
-        <p class="section-lead">
-          Madang sits on Papua New Guinea’s north coast, facing the Bismarck Sea. It is known for clear water, coral reefs and wrecks, offshore islands, rainforest and a remarkable density of languages and cultural traditions.
-        </p>
+        <p class="section-lead">Madang sits on Papua New Guinea’s north coast, facing the Bismarck Sea. It is known for clear water, coral reefs and wrecks, offshore islands, rainforest and a remarkable density of languages and traditions.</p>
 
         <div class="stats-row" role="list">
           <div class="stat-item" role="listitem">
@@ -440,13 +204,10 @@
           </div>
         </div>
 
-        <p style="margin-top: var(--space-6); color: var(--muted); max-width: 65ch;">
-          From mountain communities in the highlands to coastal and island villages, daily life still includes fishing, gardening, craft and ceremony. Visitors who arrive with time, curiosity and respect are often welcomed into that rhythm.
-        </p>
+        <p style="margin-top: var(--space-6); color: var(--muted); max-width: 65ch;">From mountain communities in the highlands to coastal and island villages, daily life still includes fishing, gardening, craft and ceremony. Visitors who arrive with time, curiosity and respect can experience a place shaped by both place and practice.</p>
       </div>
     </section>
 
-    <!-- What the site offers -->
     <section class="section" aria-labelledby="offers-heading">
       <div class="container">
         <p class="eyebrow eyebrow-dark">On this site</p>
@@ -454,39 +215,14 @@
         <p class="section-lead">Each section supports a different stage of planning or discovery.</p>
 
         <ul class="offer-list">
-          <li>
-            <span class="offer-num" aria-hidden="true">01</span>
-            <div>
-              <strong>Attractions</strong>
-              <p>Diving sites, islands, history and nature — with filters, saved favourites and short descriptions to help you choose.</p>
-            </div>
-          </li>
-          <li>
-            <span class="offer-num" aria-hidden="true">02</span>
-            <div>
-              <strong>Culture &amp; Experiences</strong>
-              <p>Village visits, crafts, sing-sings, festivals and responsible tourism guidelines so cultural travel is informed and respectful.</p>
-            </div>
-          </li>
-          <li>
-            <span class="offer-num" aria-hidden="true">03</span>
-            <div>
-              <strong>Plan Your Trip</strong>
-              <p>Essentials for arrival, timing, transport, accommodation and sample itineraries for a long weekend or a slower week.</p>
-            </div>
-          </li>
-          <li>
-            <span class="offer-num" aria-hidden="true">04</span>
-            <div>
-              <strong>Contact</strong>
-              <p>A substantial enquiry form with HTML and JavaScript validation and clear success or error feedback.</p>
-            </div>
-          </li>
+          <li><span class="offer-num" aria-hidden="true">01</span><div><strong>Attractions</strong><p>Diving sites, islands, history and nature — with filters, saved favourites and short descriptions to help you choose.</p></div></li>
+          <li><span class="offer-num" aria-hidden="true">02</span><div><strong>Culture &amp; Experiences</strong><p>Village visits, crafts, sing-sings, festivals and responsible tourism guidelines so cultural travel is informed and respectful.</p></div></li>
+          <li><span class="offer-num" aria-hidden="true">03</span><div><strong>Plan Your Trip</strong><p>Essentials for arrival, timing, transport, accommodation and sample itineraries for a long weekend or a slower week.</p></div></li>
+          <li><span class="offer-num" aria-hidden="true">04</span><div><strong>Contact</strong><p>A substantial enquiry form with HTML and JavaScript validation and clear success or error feedback.</p></div></li>
         </ul>
       </div>
     </section>
 
-    <!-- FAQ accordion — meaningful JS feature -->
     <section class="section section-soft" aria-labelledby="faq-heading">
       <div class="container">
         <p class="eyebrow eyebrow-dark">Common questions</p>
@@ -495,78 +231,34 @@
 
         <div class="about-accordion" id="about-accordion">
           <div class="about-acc-item">
-            <h3>
-              <button class="about-acc-header" type="button" id="acc-who" aria-expanded="false" aria-controls="panel-who">
-                Who is this website for?
-                <span class="about-acc-icon" aria-hidden="true">▼</span>
-              </button>
-            </h3>
-            <div class="about-acc-panel" id="panel-who" role="region" aria-labelledby="acc-who">
-              <div class="about-acc-content">
-                <p>Independent travellers, divers, small groups and anyone planning a first or return visit to Madang who wants practical information and respectful cultural context in one place.</p>
-              </div>
-            </div>
+            <h3><button class="about-acc-header" type="button" id="acc-who" aria-expanded="false" aria-controls="panel-who">Who is this website for?<span class="about-acc-icon" aria-hidden="true">▼</span></button></h3>
+            <div class="about-acc-panel" id="panel-who" role="region" aria-labelledby="acc-who"><div class="about-acc-content"><p>Independent travellers, divers, small groups and anyone planning a first or return visit to Madang who wants practical information and respectful cultural context in one place.</p></div></div>
           </div>
-
           <div class="about-acc-item">
-            <h3>
-              <button class="about-acc-header" type="button" id="acc-book" aria-expanded="false" aria-controls="panel-book">
-                Can I book tours or accommodation here?
-                <span class="about-acc-icon" aria-hidden="true">▼</span>
-              </button>
-            </h3>
-            <div class="about-acc-panel" id="panel-book" role="region" aria-labelledby="acc-book">
-              <div class="about-acc-content">
-                <p>No. Discover Madang is an information and planning guide. Use the Contact page to enquire, then confirm flights, stays and activities directly with local operators and providers.</p>
-              </div>
-            </div>
+            <h3><button class="about-acc-header" type="button" id="acc-book" aria-expanded="false" aria-controls="panel-book">Can I book tours or accommodation here?<span class="about-acc-icon" aria-hidden="true">▼</span></button></h3>
+            <div class="about-acc-panel" id="panel-book" role="region" aria-labelledby="acc-book"><div class="about-acc-content"><p>No. Discover Madang is an information and planning guide. Use the Contact page to enquire, then confirm flights, stays and activities directly with local operators and providers.</p></div></div>
           </div>
-
           <div class="about-acc-item">
-            <h3>
-              <button class="about-acc-header" type="button" id="acc-respect" aria-expanded="false" aria-controls="panel-respect">
-                How does the site support responsible travel?
-                <span class="about-acc-icon" aria-hidden="true">▼</span>
-              </button>
-            </h3>
-            <div class="about-acc-panel" id="panel-respect" role="region" aria-labelledby="acc-respect">
-              <div class="about-acc-content">
-                <p>We include cultural guidelines, advice on photography and dress in villages, and encouragement to use local guides and buy from local makers. The Culture &amp; Experiences page expands on these points.</p>
-              </div>
-            </div>
+            <h3><button class="about-acc-header" type="button" id="acc-respect" aria-expanded="false" aria-controls="panel-respect">How does the site support responsible travel?<span class="about-acc-icon" aria-hidden="true">▼</span></button></h3>
+            <div class="about-acc-panel" id="panel-respect" role="region" aria-labelledby="acc-respect"><div class="about-acc-content"><p>We include cultural guidelines, advice on photography and dress in villages, and encouragement to use local guides and buy from local makers. The Culture &amp; Experiences page is designed to help travellers approach culture with care.</p></div></div>
           </div>
-
           <div class="about-acc-item">
-            <h3>
-              <button class="about-acc-header" type="button" id="acc-project" aria-expanded="false" aria-controls="panel-project">
-                Is this a student project?
-                <span class="about-acc-icon" aria-hidden="true">▼</span>
-              </button>
-            </h3>
-            <div class="about-acc-panel" id="panel-project" role="region" aria-labelledby="acc-project">
-              <div class="about-acc-content">
-                <p>Yes. Discover Madang is the major practical project for IS229 Web Design. The team builds from requirements and audience insight through semantic HTML, responsive CSS, accessible JavaScript, testing and online deployment.</p>
-              </div>
-            </div>
+            <h3><button class="about-acc-header" type="button" id="acc-project" aria-expanded="false" aria-controls="panel-project">Is this a student project?<span class="about-acc-icon" aria-hidden="true">▼</span></button></h3>
+            <div class="about-acc-panel" id="panel-project" role="region" aria-labelledby="acc-project"><div class="about-acc-content"><p>Yes. Discover Madang is the major practical project for IS229 Web Design. The team builds from requirements and audience insight through semantic HTML, responsive CSS and accessible interactions.</p></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Project / team -->
     <section class="section" aria-labelledby="project-heading">
       <div class="container">
         <p class="eyebrow eyebrow-dark">This project</p>
         <h2 id="project-heading">Collaborative web design (IS229)</h2>
-        <p class="section-lead">
-          The site demonstrates multi-page semantic HTML5, a shared CSS design system (Flexbox and Grid), responsive layouts, JavaScript interactions (menu, favourites with localStorage, filters, accordion, form validation) and accessibility practices across every page.
-        </p>
+        <p class="section-lead">The site demonstrates multi-page semantic HTML5, a shared CSS design system (Flexbox and Grid), responsive layouts, JavaScript interactions (menu, favourites with localStorage, filters and form validation) and accessible design choices.</p>
 
         <div class="team-note">
           <h3>Team contribution</h3>
-          <p>
-            Pages and features are divided among group members. Each person is responsible for structure, styling, behaviour, responsive behaviour and testing of their assigned work, with commits recorded under their own GitHub account. See the project README for the current allocation and testing checklist.
-          </p>
+          <p>Pages and features are divided among group members. Each person is responsible for structure, styling, behaviour, responsive behaviour and testing of their assigned work, with commits and collaboration tracked through the shared repository.</p>
         </div>
 
         <p style="margin-top: var(--space-5);">
@@ -576,7 +268,6 @@
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-section" aria-labelledby="cta-title">
       <div class="container cta-inner">
         <div>
@@ -619,34 +310,5 @@
       <a href="#main-content">Back to top ↑</a>
     </div>
   </footer>
-
-  <!-- Page-specific JS: accessible accordion (supports JavaScript & Functionality rubric) -->
-  <script>
-    (function () {
-      'use strict';
-      var accordion = document.getElementById('about-accordion');
-      if (!accordion) return;
-
-      accordion.addEventListener('click', function (e) {
-        var btn = e.target.closest('.about-acc-header');
-        if (!btn) return;
-
-        var panel = document.getElementById(btn.getAttribute('aria-controls'));
-        if (!panel) return;
-
-        var isOpen = btn.getAttribute('aria-expanded') === 'true';
-
-        accordion.querySelectorAll('.about-acc-header').forEach(function (other) {
-          if (other === btn) return;
-          other.setAttribute('aria-expanded', 'false');
-          var otherPanel = document.getElementById(other.getAttribute('aria-controls'));
-          if (otherPanel) otherPanel.classList.remove('is-open');
-        });
-
-        btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-        panel.classList.toggle('is-open', !isOpen);
-      });
-    })();
-  </script>
 </body>
 </html>

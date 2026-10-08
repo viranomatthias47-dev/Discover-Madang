@@ -12,11 +12,11 @@
     }
   };
 
-  const savePlaces = (places) => {
+  const writeSavedPlaces = (places) => {
     try {
       localStorage.setItem(storageKey, JSON.stringify(places));
     } catch {
-      // Ignore storage issues in privacy-restricted browsers.
+      // Ignore storage issues in restrictive browser/privacy modes.
     }
   };
 
@@ -69,6 +69,7 @@
     if (!button) return;
     button.classList.toggle('is-saved', isSaved);
     button.setAttribute('aria-pressed', String(isSaved));
+
     const icon = button.querySelector('span:first-child');
     const label = button.querySelector('span:last-child');
     if (icon) icon.textContent = isSaved ? '♥' : '♡';
@@ -78,12 +79,14 @@
   saveButtons.forEach((button) => {
     const placeId = button.dataset.saveId;
     if (!placeId) return;
+
     updateSaveButton(button, savedPlaces.includes(placeId));
     button.addEventListener('click', () => {
       const savedIndex = savedPlaces.indexOf(placeId);
       if (savedIndex === -1) savedPlaces.push(placeId);
       else savedPlaces.splice(savedIndex, 1);
-      savePlaces(savedPlaces);
+
+      writeSavedPlaces(savedPlaces);
       updateSaveButton(button, savedIndex === -1);
     });
   });
@@ -101,12 +104,12 @@
 
     const validateField = (field) => {
       if (!field) return true;
-      const value = field.value.trim();
 
       if (field.type === 'checkbox') return field.checked;
-      if (field.tagName === 'SELECT') return value !== '';
-      if (field.type === 'email') return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-      return value.length > 0;
+      if (field.tagName === 'SELECT') return field.value.trim() !== '';
+      if (field.type === 'email') return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim());
+
+      return field.value.trim().length > 0;
     };
 
     contactForm.addEventListener('submit', (event) => {
@@ -116,8 +119,8 @@
 
       requiredFields.forEach((field) => {
         const isValid = validateField(field);
-        if (!isValid) valid = false;
         field.setAttribute('aria-invalid', String(!isValid));
+        if (!isValid) valid = false;
       });
 
       if (!valid) {
@@ -140,7 +143,7 @@
   const attractionCards = document.querySelectorAll('.attraction-card');
   const searchField = document.getElementById('search-attractions');
   const savedOnlyToggle = document.getElementById('saved-only');
-  const categoryButtons = document.querySelectorAll('[data-category]');
+  const categoryButtons = document.querySelectorAll('.filter-buttons .button[data-category]');
   const resultCount = document.getElementById('result-count');
   const detailsPanel = document.getElementById('details-panel');
 
@@ -163,8 +166,7 @@
       attractionCards.forEach((card) => {
         const cardId = card.dataset.saveId || '';
         const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
-        const cardText = card.textContent.toLowerCase();
-        const matchesSearch = !query || cardText.includes(query);
+        const matchesSearch = !query || card.textContent.toLowerCase().includes(query);
         const matchesSaved = !showSavedOnly || savedPlaces.includes(cardId);
         const isVisible = matchesCategory && matchesSearch && matchesSaved;
 
@@ -197,7 +199,7 @@
       button.addEventListener('click', () => {
         const card = button.closest('.attraction-card');
         const title = card ? card.querySelector('h3')?.textContent : 'Attraction details';
-        const text = button.dataset.details || 'No additional details available yet.';
+        const text = button.dataset.details || 'No extra details are available yet.';
 
         if (!detailsPanel) return;
         detailsPanel.hidden = false;
@@ -212,6 +214,30 @@
     applyFilters();
   }
 
+  const accordionButtons = document.querySelectorAll('.accordion-header, .about-acc-header');
+  accordionButtons.forEach((button) => {
+    const panel = document.getElementById(button.getAttribute('aria-controls'));
+    if (!panel) return;
+
+    button.addEventListener('click', () => {
+      const isOpen = button.getAttribute('aria-expanded') === 'true';
+      const group = button.closest('.accordion') || button.closest('.about-accordion');
+
+      if (group) {
+        group.querySelectorAll('.accordion-header, .about-acc-header').forEach((other) => {
+          if (other === button) return;
+          other.setAttribute('aria-expanded', 'false');
+          const otherPanel = document.getElementById(other.getAttribute('aria-controls'));
+          if (otherPanel) otherPanel.classList.remove('is-open');
+        });
+      }
+
+      button.setAttribute('aria-expanded', String(!isOpen));
+      panel.classList.toggle('is-open', !isOpen);
+    });
+  });
+
   const currentYear = document.querySelector('#current-year');
   if (currentYear) currentYear.textContent = String(new Date().getFullYear());
 })();
+
