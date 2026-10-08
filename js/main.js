@@ -16,7 +16,7 @@
     try {
       localStorage.setItem(storageKey, JSON.stringify(places));
     } catch {
-      // Ignore storage issues in restrictive browser/privacy modes.
+      // Ignore storage failures in privacy-restricted environments.
     }
   };
 
@@ -214,9 +214,9 @@
     applyFilters();
   }
 
-  const accordionButtons = document.querySelectorAll('.accordion-header, .about-acc-header');
-  accordionButtons.forEach((button) => {
-    const panel = document.getElementById(button.getAttribute('aria-controls'));
+  document.querySelectorAll('.accordion-header, .about-acc-header').forEach((button) => {
+    const panelId = button.getAttribute('aria-controls');
+    const panel = panelId ? document.getElementById(panelId) : null;
     if (!panel) return;
 
     button.addEventListener('click', () => {
@@ -224,10 +224,11 @@
       const group = button.closest('.accordion') || button.closest('.about-accordion');
 
       if (group) {
-        group.querySelectorAll('.accordion-header, .about-acc-header').forEach((other) => {
-          if (other === button) return;
-          other.setAttribute('aria-expanded', 'false');
-          const otherPanel = document.getElementById(other.getAttribute('aria-controls'));
+        group.querySelectorAll('.accordion-header, .about-acc-header').forEach((otherButton) => {
+          if (otherButton === button) return;
+          otherButton.setAttribute('aria-expanded', 'false');
+          const otherPanelId = otherButton.getAttribute('aria-controls');
+          const otherPanel = otherPanelId ? document.getElementById(otherPanelId) : null;
           if (otherPanel) otherPanel.classList.remove('is-open');
         });
       }
@@ -240,4 +241,3 @@
   const currentYear = document.querySelector('#current-year');
   if (currentYear) currentYear.textContent = String(new Date().getFullYear());
 })();
-
