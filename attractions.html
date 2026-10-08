@@ -2,12 +2,310 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=attraction.html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting to Attractions | Discover Madang</title>
+  <meta name="description" content="Explore Madang's attractions: diving, islands, heritage and nature in Papua New Guinea.">
+  <title>Attractions | Discover Madang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
 </head>
-<body>
-  <p>Redirecting to the attractions page...</p>
-  <p><a href="attraction.html">Continue to the attractions page</a></p>
+<body class="attractions-page">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="index.html" aria-label="Discover Madang home">
+        <span class="logo-mark" aria-hidden="true">DM</span>
+        <span class="logo-text">Discover <strong>Madang</strong></span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="sr-only">Open menu</span>
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+
+      <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="attractions.html" class="active" aria-current="page">Attractions</a></li>
+          <li><a href="culture-experiences.html">Culture &amp; Experiences</a></li>
+          <li><a href="plan-your-trip-preview.html">Plan Your Trip</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="page-hero" aria-labelledby="attractions-title">
+      <div class="container">
+        <p class="eyebrow">Discover Madang</p>
+        <h1 id="attractions-title">Attractions</h1>
+        <p class="page-hero-copy">Explore Madang Province through reef dives, island escapes, heritage sites and rainforest adventures.</p>
+      </div>
+    </section>
+
+    <section class="section attractions-filter-section" aria-label="Filter attractions">
+      <div class="container">
+        <form class="attractions-filter-form" role="search">
+          <div class="filter-row">
+            <label class="filter-label" for="search-attractions">Search attractions</label>
+            <input id="search-attractions" type="search" placeholder="Search by name..." aria-controls="attractions-list">
+          </div>
+          <div class="filter-buttons" role="group" aria-label="Choose attraction category">
+            <button type="button" class="button is-active" data-category="all">All</button>
+            <button type="button" class="button" data-category="diving">Diving</button>
+            <button type="button" class="button" data-category="islands">Islands</button>
+            <button type="button" class="button" data-category="history">History</button>
+            <button type="button" class="button" data-category="nature">Nature &amp; Culture</button>
+          </div>
+          <label class="saved-toggle" for="saved-only">
+            <input type="checkbox" id="saved-only">
+            Show saved only
+          </label>
+          <p id="result-count" aria-live="polite">6 attractions found</p>
+        </form>
+        <div id="details-panel" class="details-panel" aria-live="polite" hidden></div>
+      </div>
+    </section>
+
+    <section id="diving" class="section attractions-section" aria-labelledby="diving-heading">
+      <div class="container">
+        <div class="section-heading section-heading-row">
+          <div>
+            <p class="eyebrow eyebrow-dark">Dive deeper</p>
+            <h2 id="diving-heading">Diving</h2>
+          </div>
+        </div>
+        <div class="attraction-grid" id="attractions-list">
+          <article class="card attraction-card" data-category="diving" data-save-id="reef-and-wrecks">
+            <div class="card-image-wrap">
+              <img src="images/attraction-2.jpg" alt="Divers exploring a reef and wreck in Madang waters" loading="lazy">
+              <span class="card-tag">Diving</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span>01</span><span>Intermediate</span></div>
+              <h3>Madang Reef &amp; Wrecks</h3>
+              <p>Explore coral gardens, reef walls and scattered WWII wrecks in clear tropical waters.</p>
+              <div class="card-actions">
+                <button class="save-button" type="button" data-save-id="reef-and-wrecks" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button view-details" type="button" data-details="Madang Reef & Wrecks combines colorful reef dives with wartime wrecks in calm, clear waters.">View details</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card attraction-card" data-category="diving" data-save-id="lagoon-dive">
+            <div class="card-image-wrap">
+              <img src="images/attraction-1.jpg" alt="Coral lagoon and clear dive water in Madang" loading="lazy">
+              <span class="card-tag">Diving</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span>02</span><span>Beginner</span></div>
+              <h3>Lagoon Drift Dive</h3>
+              <p>Float above shallow reef shelves where colorful fish, coral bommies and warm water make every moment easy and scenic.</p>
+              <div class="card-actions">
+                <button class="save-button" type="button" data-save-id="lagoon-dive" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button view-details" type="button" data-details="Lagoon Drift Dive is a gentler snorkelling and diving option with bright reef life close to shore.">View details</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="islands" class="section attractions-section" aria-labelledby="islands-heading">
+      <div class="container">
+        <div class="section-heading section-heading-row">
+          <div>
+            <p class="eyebrow eyebrow-dark">Island escapes</p>
+            <h2 id="islands-heading">Islands</h2>
+          </div>
+        </div>
+        <div class="attraction-grid">
+          <article class="card attraction-card" data-category="islands" data-save-id="bilbil-island">
+            <div class="card-image-wrap">
+              <img src="images/attraction-1.jpg" alt="Bilbil Island and its calm tropical shore" loading="lazy">
+              <span class="card-tag">Island</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span>02</span><span>Half-day</span></div>
+              <h3>Bilbil Island</h3>
+              <p>Known for pottery-making and easygoing coastal charm, Bilbil offers a relaxed island experience.</p>
+              <div class="card-actions">
+                <button class="save-button" type="button" data-save-id="bilbil-island" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button view-details" type="button" data-details="Bilbil Island is ideal for a slower-paced island trip with craft communities and tranquil beaches.">View details</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card attraction-card" data-category="islands" data-save-id="kranket-island">
+            <div class="card-image-wrap">
+              <img src="images/attraction-3.jpg" alt="A sandy island shore surrounded by clear ocean and tropical greenery" loading="lazy">
+              <span class="card-tag">Island</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span>03</span><span>Day trip</span></div>
+              <h3>Kranket Island</h3>
+              <p>Drop into sandy coves, swim in clear waters and enjoy a full day of coastal relaxation.</p>
+              <div class="card-actions">
+                <button class="save-button" type="button" data-save-id="kranket-island" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button view-details" type="button" data-details="Kranket Island offers beach time, snorkelling and boat access to quiet coves.">View details</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card attraction-card" data-category="islands" data-save-id="barrier-islet">
+            <div class="card-image-wrap">
+              <img src="images/hero-madang.jpg" alt="Coastal island scenery near Madang" loading="lazy">
+              <span class="card-tag">Island</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span>04</span><span>Sunset</span></div>
+              <h3>Barrier Islet</h3>
+              <p>A quiet island stop for sunset swims, ocean views and slow evenings close to the reef edge.</p>
+              <div class="card-actions">
+                <button class="save-button" type="button" data-save-id="barrier-islet" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button view-details" type="button" data-details="Barrier Islet is a scenic stop for beach walks, snorkelling and golden-hour views.">View details</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="history" class="section attractions-section" aria-labelledby="history-heading">
+      <div class="container">
+        <div class="section-heading section-heading-row">
+          <div>
+            <p class="eyebrow eyebrow-dark">Stories of the coast</p>
+            <h2 id="history-heading">History</h2>
+          </div>
+        </div>
+        <div class="attraction-grid">
+          <article class="card attraction-card" data-category="history" data-save-id="wwii-sites">
+            <div class="card-image-wrap">
+              <img src="images/attraction-2.jpg" alt="Historic coastal area linked to WWII sites in Madang" loading="lazy">
+              <span class="card-tag">History</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span>04</span><span>Half-day</span></div>
+              <h3>WWII Sites</h3>
+              <p>Walk through wartime memorials and coastal sites that still tell the story of the Pacific campaign.</p>
+              <div class="card-actions">
+                <button class="save-button" type="button" data-save-id="wwii-sites" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button view-details" type="button" data-details="Madang's WWII sites include memorials, wreck remnants and historical coastal viewpoints.">View details</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card attraction-card" data-category="history" data-save-id="coastwatchers-trail">
+            <div class="card-image-wrap">
+              <img src="images/attraction-3.jpg" alt="Historic site walk with scenic Madang coastline" loading="lazy">
+              <span class="card-tag">History</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span>05</span><span>Guided</span></div>
+              <h3>Coastwatchers Trail</h3>
+              <p>Follow local stories of wartime strategy, resilience and the coastal communities that shaped the region.</p>
+              <div class="card-actions">
+                <button class="save-button" type="button" data-save-id="coastwatchers-trail" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button view-details" type="button" data-details="The Coastwatchers Trail shares the human side of the Pacific campaign with local context and storytelling.">View details</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="nature" class="section attractions-section" aria-labelledby="nature-heading">
+      <div class="container">
+        <div class="section-heading section-heading-row">
+          <div>
+            <p class="eyebrow eyebrow-dark">Nature and culture</p>
+            <h2 id="nature-heading">Nature &amp; Culture</h2>
+          </div>
+        </div>
+        <div class="attraction-grid">
+          <article class="card attraction-card" data-category="nature" data-save-id="rainforest-trails">
+            <div class="card-image-wrap">
+              <img src="images/attraction-3.jpg" alt="Lush rainforest trail in Madang Province" loading="lazy">
+              <span class="card-tag">Nature</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span>05</span><span>Easy</span></div>
+              <h3>Rainforest Trails</h3>
+              <p>Wander through cool rainforest paths, listen to birdlife and soak in the landscape beyond the shore.</p>
+              <div class="card-actions">
+                <button class="save-button" type="button" data-save-id="rainforest-trails" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button view-details" type="button" data-details="Rainforest trails offer freshwater air, birdsong and easy scenic walks for nature lovers.">View details</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card attraction-card" data-category="nature" data-save-id="craft-villages">
+            <div class="card-image-wrap">
+              <img src="images/attraction-1.jpg" alt="Community craft activity in a village setting in Madang" loading="lazy">
+              <span class="card-tag">Culture</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span>06</span><span>Half-day</span></div>
+              <h3>Craft Villages</h3>
+              <p>Meet locals, learn traditional artforms and enjoy a cultural visit filled with stories and craftsmanship.</p>
+              <div class="card-actions">
+                <button class="save-button" type="button" data-save-id="craft-villages" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button view-details" type="button" data-details="Craft villages share local design, traditional knowledge and warm community hospitality.">View details</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="card attraction-card" data-category="nature" data-save-id="birdwatching">
+            <div class="card-image-wrap">
+              <img src="images/hero-madang.jpg" alt="Birdwatching route and forest scenery in Madang" loading="lazy">
+              <span class="card-tag">Nature</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta"><span>07</span><span>Morning</span></div>
+              <h3>Birdwatching Loop</h3>
+              <p>Start early to catch forest birds, misty trails and the sound of the region waking up around you.</p>
+              <div class="card-actions">
+                <button class="save-button" type="button" data-save-id="birdwatching" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button view-details" type="button" data-details="The birdwatching loop is ideal for early travellers who want a calm, scenic morning in nature.">View details</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <a class="site-logo site-logo-footer" href="index.html" aria-label="Discover Madang home">
+          <span class="logo-mark" aria-hidden="true">DM</span>
+          <span class="logo-text">Discover <strong>Madang</strong></span>
+        </a>
+        <p>Find the extraordinary in Papua New Guinea's northern coast.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h3>Explore</h3>
+          <a href="attractions.html">Attractions</a>
+          <a href="culture-experiences.html">Culture &amp; Experiences</a>
+        </div>
+        <div>
+          <h3>Travel</h3>
+          <a href="plan-your-trip-preview.html">Plan Your Trip</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="current-year">2026</span> Discover Madang. Travel with respect.</p>
+      <a href="#main-content">Back to top ↑</a>
+    </div>
+  </footer>
 </body>
 </html>
