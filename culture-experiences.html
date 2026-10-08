@@ -128,11 +128,33 @@
     .recommend-grid { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
     @media (min-width: 640px) { .recommend-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 900px) { .recommend-grid { grid-template-columns: repeat(3, 1fr); } }
-    .recommend-card { background: var(--light); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
-    .recommend-card img { width: 100%; height: 180px; object-fit: cover; background: var(--sand); }
+    .recommend-card { 
+      background: var(--light); 
+      border: 1px solid var(--border); 
+      border-radius: var(--radius); 
+      overflow: hidden; 
+      display: flex; 
+      flex-direction: column; 
+      position: relative;
+      transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+    .recommend-card:hover,
+    .recommend-card:focus-within {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+      border-color: var(--primary);
+    }
+    .recommend-card img { width: 100%; height: 180px; object-fit: cover; background: var(--sand); transition: transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .recommend-card:hover img,
+    .recommend-card:focus-within img { transform: scale(1.08) rotate(1deg); }
     .recommend-card .card-body { padding: var(--space-4); flex: 1; display: flex; flex-direction: column; }
     .recommend-card h3 { margin: 0 0 var(--space-2); font-size: 1.1rem; }
     .recommend-card p { color: var(--muted); font-size: 0.95rem; flex: 1; }
+    .recommend-card .card-actions { margin-top: var(--space-3); }
+    .recommend-card .card-actions .save-button {
+      margin: 0;
+    }
     .guidelines-grid { display: grid; gap: var(--space-3); }
     @media (min-width: 700px) { .guidelines-grid { grid-template-columns: repeat(3, 1fr); } }
     .guideline-card { background: var(--sand); border-radius: var(--radius); padding: var(--space-4); border-left: 4px solid var(--secondary); }
@@ -214,17 +236,17 @@
         <p class="section-lead">Save the ones that speak to you. Your choices stay in this browser so you can return to them later.</p>
 
         <div class="experience-grid">
-          <article class="experience-card" data-experience-id="village-visits" role="button" tabindex="0">
+          <article class="experience-card" data-save-id="exp-village-visits" data-details="Join guided trips to communities such as Bilbil, Riwo and Siar. Learn directly from local people about daily life, traditions and community stories while supporting respectful local tourism." role="button" tabindex="0">
             <div class="card-meta"><span>01</span><span>Half day</span></div>
             <h3>Village visits</h3>
-            <p>Join guided trips to communities such as Bilbil, Riwo, Siassi Islands and others. Learn directly from local people about daily life, traditions and the stories that matter to them.</p>
+            <p>Join guided trips to communities such as Bilbil, Riwo, Siar and beyond. Learn directly from local people about daily life, traditions and the stories that matter to them.</p>
             <button class="save-experience" type="button" data-save-id="exp-village-visits" aria-pressed="false">
               <span>♡</span>
               <span>Save</span>
             </button>
           </article>
 
-          <article class="experience-card" data-experience-id="pottery-bilbil" role="button" tabindex="0">
+          <article class="experience-card" data-save-id="exp-pottery-bilbil" data-details="Women of Bilbil still shape clay pots by hand using techniques passed down through generations. Watch the process, ask questions, and gain a deeper appreciation for the craftsmanship and community knowledge behind each piece." role="button" tabindex="0">
             <div class="card-meta"><span>02</span><span>Craft</span></div>
             <h3>Pottery at Bilbil</h3>
             <p>Women of Bilbil still shape clay pots by hand using techniques passed down over generations. Watch, ask questions, and try it yourself on this hands-on cultural visit.</p>
@@ -234,7 +256,7 @@
             </button>
           </article>
 
-          <article class="experience-card" data-experience-id="sing-sing" role="button" tabindex="0">
+          <article class="experience-card" data-save-id="exp-sing-sing" data-details="Feel the pulse of garamut slit drums and kundu hand drums. Witness elaborate costumes, dance and songs that express local identity, ancestral stories and celebration." role="button" tabindex="0">
             <div class="card-meta"><span>03</span><span>Performance</span></div>
             <h3>Cultural sing-sings</h3>
             <p>Feel the pulse of garamut slit drums and kundu hand drums. Witness elaborate costumes, traditional dances and songs that reflect regional identities and ancestral pride.</p>
@@ -244,7 +266,7 @@
             </button>
           </article>
 
-          <article class="experience-card" data-experience-id="island-hopping" role="button" tabindex="0">
+          <article class="experience-card" data-save-id="exp-island-hopping" data-details="Combine snorkelling with short village stops. Learn about fisheries management, marine conservation and the way island communities live sustainably on the water, while enjoying the local coastline." role="button" tabindex="0">
             <div class="card-meta"><span>04</span><span>Island day</span></div>
             <h3>Island hopping</h3>
             <p>Combine snorkelling with short village stops. Learn about fisheries management, marine conservation and the way island communities live sustainably on the water.</p>
@@ -254,7 +276,7 @@
             </button>
           </article>
 
-          <article class="experience-card" data-experience-id="local-food" role="button" tabindex="0">
+          <article class="experience-card" data-save-id="exp-local-food" data-details="Taste fresh seafood, root crops, coconut and communal meals in their natural setting. Markets are a great place to meet producers, learn about ingredients and support small local businesses." role="button" tabindex="0">
             <div class="card-meta"><span>05</span><span>Food</span></div>
             <h3>Local food &amp; markets</h3>
             <p>Taste fresh seafood, root crops, coconut and communal meals in their natural settings. Buy from local producers at vibrant markets and support small businesses.</p>
@@ -264,7 +286,7 @@
             </button>
           </article>
 
-          <article class="experience-card" data-experience-id="haus-tumbuna" role="button" tabindex="0">
+          <article class="experience-card" data-save-id="exp-haus-tumbuna" data-details="Visit a local museum or cultural centre to see carved masks, shell ornaments, woven baskets and displays telling the story of Madang's artistic heritage and community identity." role="button" tabindex="0">
             <div class="card-meta"><span>06</span><span>Heritage</span></div>
             <h3>Haus Tumbuna &amp; crafts</h3>
             <p>Visit the local museum and cultural centre for carved masks, shell ornaments, woven baskets and displays that tell the story of the region's remarkable artistic heritage.</p>
@@ -312,13 +334,13 @@
         <h2 id="recommend-heading">Recommended sites to visit</h2>
         <p class="section-lead">Scenic landmarks, nature reserves, islands and coastal stays — places that pair well with Madang's cultural experiences.</p>
         <div class="recommend-grid">
-          <article class="recommend-card"><img src="images/Coast-Watchers-Light.jpg" alt="Coastwatchers Memorial Lighthouse overlooking Madang harbour"><div class="card-body"><h3>Coastwatchers Memorial Lighthouse</h3><p>Historic WWII landmark with panoramic views over Madang Harbour and the surrounding islands. A short walk uphill rewarded with stunning coastal vistas.</p></div></article>
-          <article class="recommend-card"><img src="images/Machine-Gun-Beach.jpg" alt="Sandy shore and shade trees at Machine Gun Beach, Madang"><div class="card-body"><h3>Machine Gun Beach</h3><p>A peaceful, sandy coastal strip ideal for swimming and relaxation. Named after remnants from WWII history. Good for snorkelling and exploring the nearby reef.</p></div></article>
-          <article class="recommend-card"><img src="images/Balek-Wildlife-Sanctuary.jpg" alt="Sulphur stream and rainforest at Balek Wildlife Sanctuary"><div class="card-body"><h3>Balek Wildlife Sanctuary</h3><p>A pristine rainforest reserve with a dramatic sulphur stream. Home to diverse bird life and unique vegetation. Accessible via hiking trail.</p></div></article>
-          <article class="recommend-card"><img src="images/Kranget-Island.webp" alt="Clear tropical water and coral at Pig Island and Kranket Island"><div class="card-body"><h3>Pig Island &amp; Kranket Island</h3><p>Twin islands reached by boat. Pristine coral reefs, clear water and white-sand beaches. Excellent for snorkelling and a day trip from Madang town.</p></div></article>
-          <article class="recommend-card"><img src="images/Siar-Island.webp" alt="Quiet beach and coastal village on Siar Island"><div class="card-body"><h3>Siar Island</h3><p>A tranquil local island with a small village. Offers an intimate glimpse of island life and opportunity to visit a cultural site with local guides.</p></div></article>
-          <article class="recommend-card"><img src="images/Tabad-Island.jpg" alt="Turquoise water and white sand on Tabad Island near Riwo"><div class="card-body"><h3>Tabad Island</h3><p>A hidden jewel with stunning turquoise water and powder-soft sand. Great for swimming, snorkelling and picnicking. Accessible from nearby Riwo village.</p></div></article>
-          <article class="recommend-card"><img src="images/Jais-aben-resort.jpg" alt="Beachfront bungalows and lawns at Jais Aben Resort on the north coast"><div class="card-body"><h3>Jais Aben Resort</h3><p>A beachfront eco-resort and cultural hub on the north coast. Offers accommodation, restaurant, and can arrange guided experiences and tours.</p></div></article>
+          <article class="recommend-card" data-save-id="rec-coastwatchers" data-details="The Coastwatchers Memorial Lighthouse is a historic WWII landmark with sweeping views across Madang Harbour. It is a great place to see the harbour, the coastline and nearby islands in one glance." role="button" tabindex="0"><img src="images/Coast-Watchers-Light.jpg" alt="Coastwatchers Memorial Lighthouse overlooking Madang harbour"><div class="card-body"><h3>Coastwatchers Memorial Lighthouse</h3><p>Historic WWII landmark with panoramic views over Madang Harbour and the surrounding islands. A short walk uphill rewarded with stunning coastal vistas.</p><div class="card-actions"><button type="button" class="save-button" data-save-id="rec-coastwatchers" aria-pressed="false"><span>♡</span><span>Save</span></button></div></div></article>
+          <article class="recommend-card" data-save-id="rec-machine-gun" data-details="Machine Gun Beach is a relaxed, sandy coastline ideal for swimming and sunset strolls. The waters are suitable for a casual swim, and the nearby reef can be explored with a local guide." role="button" tabindex="0"><img src="images/Machine-Gun-Beach.jpg" alt="Sandy shore and shade trees at Machine Gun Beach, Madang"><div class="card-body"><h3>Machine Gun Beach</h3><p>A peaceful, sandy coastal strip ideal for swimming and relaxation. Named after remnants from WWII history. Good for snorkelling and exploring the nearby reef.</p><div class="card-actions"><button type="button" class="save-button" data-save-id="rec-machine-gun" aria-pressed="false"><span>♡</span><span>Save</span></button></div></div></article>
+          <article class="recommend-card" data-save-id="rec-balek" data-details="Balek Wildlife Sanctuary is a rainforest reserve with a sulphur stream and rich biodiversity. It is an excellent option for a nature-focused outing with bird life, jungle trails and a dramatic landscape." role="button" tabindex="0"><img src="images/Balek-Wildlife-Sanctuary.jpg" alt="Sulphur stream and rainforest at Balek Wildlife Sanctuary"><div class="card-body"><h3>Balek Wildlife Sanctuary</h3><p>A pristine rainforest reserve with a dramatic sulphur stream. Home to diverse bird life and unique vegetation. Accessible via hiking trail.</p><div class="card-actions"><button type="button" class="save-button" data-save-id="rec-balek" aria-pressed="false"><span>♡</span><span>Save</span></button></div></div></article>
+          <article class="recommend-card" data-save-id="rec-pig-island" data-details="Pig Island and Kranket Island are best reached by boat and are ideal for clear-water snorkelling. These island outings pair beautifully with a relaxed beach day and a local seafood meal." role="button" tabindex="0"><img src="images/Kranget-Island.webp" alt="Clear tropical water and coral at Pig Island and Kranket Island"><div class="card-body"><h3>Pig Island &amp; Kranket Island</h3><p>Twin islands reached by boat. Pristine coral reefs, clear water and white-sand beaches. Excellent for snorkelling and a day trip from Madang town.</p><div class="card-actions"><button type="button" class="save-button" data-save-id="rec-pig-island" aria-pressed="false"><span>♡</span><span>Save</span></button></div></div></article>
+          <article class="recommend-card" data-save-id="rec-siar" data-details="Siar Island offers a quiet coastal setting and a chance to see local island life up close. It is ideal for travellers looking for a slower pace, simple beaches and a more grounded cultural experience." role="button" tabindex="0"><img src="images/Siar-Island.webp" alt="Quiet beach and coastal village on Siar Island"><div class="card-body"><h3>Siar Island</h3><p>A tranquil local island with a small village. Offers an intimate glimpse of island life and opportunity to visit a cultural site with local guides.</p><div class="card-actions"><button type="button" class="save-button" data-save-id="rec-siar" aria-pressed="false"><span>♡</span><span>Save</span></button></div></div></article>
+          <article class="recommend-card" data-save-id="rec-tabad" data-details="Tabad Island is a hidden gem with clear water and soft white sand. It works well as a peaceful day trip for snorkelling, swimming and taking a break from the busier tourist areas." role="button" tabindex="0"><img src="images/Tabad-Island.jpg" alt="Turquoise water and white sand on Tabad Island near Riwo"><div class="card-body"><h3>Tabad Island</h3><p>A hidden jewel with stunning turquoise water and powder-soft sand. Great for swimming, snorkelling and picnicking. Accessible from nearby Riwo village.</p><div class="card-actions"><button type="button" class="save-button" data-save-id="rec-tabad" aria-pressed="false"><span>♡</span><span>Save</span></button></div></div></article>
+          <article class="recommend-card" data-save-id="rec-jais-aben" data-details="Jais Aben Resort is a beachfront eco-resort along the north coast. It combines comfortable accommodation with a cultural and coastal setting, making it a flexible base for exploring Madang." role="button" tabindex="0"><img src="images/Jais-aben-resort.jpg" alt="Beachfront bungalows and lawns at Jais Aben Resort on the north coast"><div class="card-body"><h3>Jais Aben Resort</h3><p>A beachfront eco-resort and cultural hub on the north coast. Offers accommodation, restaurant, and can arrange guided experiences and tours.</p><div class="card-actions"><button type="button" class="save-button" data-save-id="rec-jais-aben" aria-pressed="false"><span>♡</span><span>Save</span></button></div></div></article>
         </div>
       </div>
     </section>
