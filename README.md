@@ -43,7 +43,18 @@ Discover Madang is a responsive tourism website designed to showcase the beauty,
 
 ## Team Contribution Statement
 
-All members of the group contributed to the successful completion of the project. Each member was responsible for their assigned page and helped ensure the website was consistent, functional, and ready for presentation.
+All members of the group contributed to the successful completion of the project. Each member was responsible for their assigned page and helped ensure the website was consistent, functional, and visually cohesive.
+
+## AI Use Declaration
+
+This project was developed with the support of AI-assisted tools to help with tasks such as:
+
+- generating and refining content for the website
+- improving code structure and consistency
+- assisting with debugging and troubleshooting HTML, CSS, and JavaScript issues
+- suggesting improvements to project documentation and presentation
+
+All AI-generated suggestions were reviewed, revised, and approved by the project team before being incorporated into the final website. The final design, content, and implementation decisions remain the responsibility of the team.
 
 ## Project Notes
 
