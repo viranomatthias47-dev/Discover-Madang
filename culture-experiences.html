@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover Madang’s living cultures: village visits, sing-sings, traditional crafts, festivals and responsible tourism experiences in Papua New Guinea.">
+  <meta name="description" content="Discover Madang's living cultures: village visits, sing-sings, traditional crafts, festivals and responsible tourism experiences in Papua New Guinea.">
   <title>Culture &amp; Experiences | Discover Madang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,13 +18,104 @@
     .experience-grid { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
     @media (min-width: 640px) { .experience-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 900px) { .experience-grid { grid-template-columns: repeat(3, 1fr); } }
-    .experience-card { background: var(--surface); border: 1px solid #D5B52E; border-radius: var(--radius); padding: var(--space-4); display: flex; flex-direction: column; min-height: 100%; }
-    .experience-card h3 { margin: 0 0 var(--space-2); font-size: 1.15rem; }
-    .experience-card p { flex: 1; color: var(--surface-muted); font-size: 0.95rem; margin-bottom: var(--space-3); }
-    .experience-card .card-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--surface-muted); }
+    .experience-card { 
+      background: var(--surface); 
+      border: 2px solid #D5B52E; 
+      border-radius: var(--radius); 
+      padding: var(--space-4); 
+      display: flex; 
+      flex-direction: column; 
+      min-height: 100%;
+      cursor: pointer;
+      transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .experience-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(242, 183, 5, 0.15) 0%, rgba(87, 203, 185, 0.15) 100%);
+      opacity: 0;
+      transition: opacity 300ms ease;
+      pointer-events: none;
+    }
+    .experience-card:hover,
+    .experience-card:focus-within {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+      border-color: var(--primary);
+    }
+    .experience-card:hover::before,
+    .experience-card:focus-within::before {
+      opacity: 1;
+    }
+    .experience-card h3 { 
+      margin: 0 0 var(--space-2); 
+      font-size: 1.15rem; 
+      position: relative;
+      z-index: 1;
+    }
+    .experience-card p { 
+      flex: 1; 
+      color: var(--surface-muted); 
+      font-size: 0.95rem; 
+      margin-bottom: var(--space-3);
+      position: relative;
+      z-index: 1;
+    }
+    .experience-card .card-meta { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: var(--space-2); 
+      font-size: 0.72rem; 
+      font-weight: 700; 
+      letter-spacing: 0.06em;
+      position: relative;
+      z-index: 1;
+    }
+    .experience-card .card-meta span:first-child {
+      font-size: 1.3rem;
+      color: var(--surface-link);
+      font-weight: 800;
+    }
+    .experience-card button {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+    .experience-card .save-experience {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: var(--dark);
+      border-radius: 3px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: var(--space-3);
+      transition: all 200ms ease;
+    }
+    .experience-card .save-experience:hover {
+      background: var(--secondary);
+      color: var(--white);
+      transform: scale(1.08);
+    }
+    .experience-card .save-experience.is-saved {
+      background: var(--error);
+      color: var(--white);
+    }
     .accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--light); }
     .accordion-item + .accordion-item { border-top: 1px solid var(--border); }
-    .accordion-header { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-4); background: var(--light); border: 0; cursor: pointer; text-align: left; font-family: 'Poppins', sans-serif; font-size: 1.05rem; font-weight: 600; color: var(--text); }
+    .accordion-header { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-4); background: var(--light); border: 0; cursor: pointer; transition: background 200ms ease; }
     .accordion-header:hover { background: var(--sand); }
     .accordion-icon { flex-shrink: 0; transition: transform var(--transition); font-size: 0.85rem; color: var(--surface-muted); }
     .accordion-header[aria-expanded="true"] .accordion-icon { transform: rotate(180deg); }
@@ -49,6 +140,26 @@
     .guideline-card p { color: var(--muted); font-size: 0.95rem; }
     .section-lead { max-width: 58ch; color: var(--muted); margin-top: var(--space-2); margin-bottom: var(--space-5); }
     .section-soft { background: #FFF9E6; }
+    .experience-details-panel {
+      margin-top: var(--space-5);
+      padding: var(--space-4);
+      background: var(--sand);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius);
+      animation: slideDown 300ms ease;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .experience-details-panel h3 {
+      color: var(--surface-text);
+      margin: 0 0 var(--space-2);
+    }
+    .experience-details-panel p {
+      color: var(--surface-muted);
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -92,7 +203,7 @@
       <div class="container">
         <p class="eyebrow eyebrow-dark">A province of living cultures</p>
         <h2 id="intro-heading">Stories still told out loud.</h2>
-        <p class="section-lead">Madang is one of the most culturally diverse places on Earth. Roughly a quarter of Papua New Guinea’s languages are spoken here. From mountain communities in the Simbai highlands to coastal villages and island groups, cultural life remains strong, living and deeply rooted in place.</p>
+        <p class="section-lead">Madang is one of the most culturally diverse places on Earth. Roughly a quarter of Papua New Guinea's languages are spoken here. From mountain communities in the interior to island villages on the coast, each place has its own traditions, crafts and ceremonies. Your visit can support these communities when you travel with respect and curiosity.</p>
       </div>
     </section>
 
@@ -103,13 +214,68 @@
         <p class="section-lead">Save the ones that speak to you. Your choices stay in this browser so you can return to them later.</p>
 
         <div class="experience-grid">
-          <article class="experience-card"><div class="card-meta"><span>01</span><span>Half day</span></div><h3>Village visits</h3><p>Join guided trips to communities such as Bilbil, Riwo, Siar and Kranket. Meet families, watch daily rhythms and share stories over coconut and fresh produce.</p><button class="save-button" type="button" data-save-id="village-visits" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button></article>
-          <article class="experience-card"><div class="card-meta"><span>02</span><span>Craft</span></div><h3>Pottery at Bilbil</h3><p>Women of Bilbil still shape clay pots by hand using techniques passed down for generations. Watch demonstrations and learn how pottery fits into daily life and trade.</p><button class="save-button" type="button" data-save-id="pottery-bilbil" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button></article>
-          <article class="experience-card"><div class="card-meta"><span>03</span><span>Performance</span></div><h3>Cultural sing-sings</h3><p>Feel the pulse of garamut slit drums and kundu hand drums. Dancers in bilas (traditional dress) share songs and stories that keep identity and history alive.</p><button class="save-button" type="button" data-save-id="sing-sing" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button></article>
-          <article class="experience-card"><div class="card-meta"><span>04</span><span>Island day</span></div><h3>Island hopping</h3><p>Combine snorkelling with short village stops. Learn about fishing practices, local food and the slower rhythm of life on the Bismarck Sea.</p><button class="save-button" type="button" data-save-id="island-hopping" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button></article>
-          <article class="experience-card"><div class="card-meta"><span>05</span><span>Food</span></div><h3>Local food &amp; markets</h3><p>Taste fresh seafood, root crops, coconut and communal mumu-style cooking. Madang’s markets offer tropical fruit, bilums and everyday coastal ingredients.</p><button class="save-button" type="button" data-save-id="local-food" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button></article>
-          <article class="experience-card"><div class="card-meta"><span>06</span><span>Heritage</span></div><h3>Haus Tumbuna &amp; crafts</h3><p>Visit the local museum and cultural centre for carvings, ceremonial objects and history, then explore markets for bilums, shell jewellery and handmade work.</p><button class="save-button" type="button" data-save-id="haus-tumbuna" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button></article>
+          <article class="experience-card" data-experience-id="village-visits" role="button" tabindex="0">
+            <div class="card-meta"><span>01</span><span>Half day</span></div>
+            <h3>Village visits</h3>
+            <p>Join guided trips to communities such as Bilbil, Riwo, Siassi Islands and others. Learn directly from local people about daily life, traditions and the stories that matter to them.</p>
+            <button class="save-experience" type="button" data-save-id="exp-village-visits" aria-pressed="false">
+              <span>♡</span>
+              <span>Save</span>
+            </button>
+          </article>
+
+          <article class="experience-card" data-experience-id="pottery-bilbil" role="button" tabindex="0">
+            <div class="card-meta"><span>02</span><span>Craft</span></div>
+            <h3>Pottery at Bilbil</h3>
+            <p>Women of Bilbil still shape clay pots by hand using techniques passed down over generations. Watch, ask questions, and try it yourself on this hands-on cultural visit.</p>
+            <button class="save-experience" type="button" data-save-id="exp-pottery-bilbil" aria-pressed="false">
+              <span>♡</span>
+              <span>Save</span>
+            </button>
+          </article>
+
+          <article class="experience-card" data-experience-id="sing-sing" role="button" tabindex="0">
+            <div class="card-meta"><span>03</span><span>Performance</span></div>
+            <h3>Cultural sing-sings</h3>
+            <p>Feel the pulse of garamut slit drums and kundu hand drums. Witness elaborate costumes, traditional dances and songs that reflect regional identities and ancestral pride.</p>
+            <button class="save-experience" type="button" data-save-id="exp-sing-sing" aria-pressed="false">
+              <span>♡</span>
+              <span>Save</span>
+            </button>
+          </article>
+
+          <article class="experience-card" data-experience-id="island-hopping" role="button" tabindex="0">
+            <div class="card-meta"><span>04</span><span>Island day</span></div>
+            <h3>Island hopping</h3>
+            <p>Combine snorkelling with short village stops. Learn about fisheries management, marine conservation and the way island communities live sustainably on the water.</p>
+            <button class="save-experience" type="button" data-save-id="exp-island-hopping" aria-pressed="false">
+              <span>♡</span>
+              <span>Save</span>
+            </button>
+          </article>
+
+          <article class="experience-card" data-experience-id="local-food" role="button" tabindex="0">
+            <div class="card-meta"><span>05</span><span>Food</span></div>
+            <h3>Local food &amp; markets</h3>
+            <p>Taste fresh seafood, root crops, coconut and communal meals in their natural settings. Buy from local producers at vibrant markets and support small businesses.</p>
+            <button class="save-experience" type="button" data-save-id="exp-local-food" aria-pressed="false">
+              <span>♡</span>
+              <span>Save</span>
+            </button>
+          </article>
+
+          <article class="experience-card" data-experience-id="haus-tumbuna" role="button" tabindex="0">
+            <div class="card-meta"><span>06</span><span>Heritage</span></div>
+            <h3>Haus Tumbuna &amp; crafts</h3>
+            <p>Visit the local museum and cultural centre for carved masks, shell ornaments, woven baskets and displays that tell the story of the region's remarkable artistic heritage.</p>
+            <button class="save-experience" type="button" data-save-id="exp-haus-tumbuna" aria-pressed="false">
+              <span>♡</span>
+              <span>Save</span>
+            </button>
+          </article>
         </div>
+
+        <div id="experience-details" hidden class="experience-details-panel"></div>
       </div>
     </section>
 
@@ -121,20 +287,20 @@
 
         <div class="accordion" id="culture-accordion">
           <div class="accordion-item">
-            <h3><button class="accordion-header" type="button" id="acc-festivals" aria-expanded="false" aria-controls="panel-festivals">Festivals &amp; celebrations<span class="accordion-icon" aria-hidden="true">▼</span></button></h3>
-            <div class="accordion-panel" id="panel-festivals" role="region" aria-labelledby="acc-festivals"><div class="accordion-content"><p>The annual <strong>Madang Festival</strong> (usually early to mid-June) is the province’s main cultural event. Groups from across the six districts gather for sing-sing performances, dance and local food.</p><ul><li><strong>Karkar Island Bilum Festival</strong> — celebrates bilum weaving with demonstrations, workshops and markets.</li><li><strong>Bundi Komba Festival</strong> — a mountain celebration of song, spirit and seasonal food.</li><li>Local canoe racing and coastal events also bring communities together through the year.</li></ul><p>Confirm current dates with local operators or the Madang Visitors &amp; Cultural Bureau, as schedules can change.</p></div></div>
+            <h3><button class="accordion-header" type="button" id="acc-festivals" aria-expanded="false" aria-controls="panel-festivals">Festivals &amp; celebrations<span class="accordion-icon" aria-hidden="true">⌄</span></button></h3>
+            <div class="accordion-panel" id="panel-festivals" role="region" aria-labelledby="acc-festivals"><div class="accordion-content"><p>The annual <strong>Madang Festival</strong> (usually August or September) brings together cultural groups from across the province. You'll see elaborate traditional dress, music, dance and craft displays. Sing-sings are held regularly throughout the year — ask your guide when performances are scheduled. Smaller celebrations happen around holidays and at seasonal events tied to fishing, planting and harvesting cycles.</p></div></div>
           </div>
           <div class="accordion-item">
-            <h3><button class="accordion-header" type="button" id="acc-practices" aria-expanded="false" aria-controls="panel-practices">Traditional practices &amp; crafts<span class="accordion-icon" aria-hidden="true">▼</span></button></h3>
-            <div class="accordion-panel" id="panel-practices" role="region" aria-labelledby="acc-practices"><div class="accordion-content"><p>Many communities continue skills that shape everyday life:</p><ul><li><strong>Pottery</strong> — Bilbil women form pots by hand and fire them in open fires.</li><li><strong>Bilum weaving</strong> — strong, colourful string bags used for carrying food, goods and babies; designs often carry meaning.</li><li><strong>Wood carving &amp; drums</strong> — garamuts and kundus remain central to music and communication.</li><li><strong>Storytelling</strong> — village theatre and oral histories keep traditional knowledge alive.</li><li><strong>Fishing &amp; gardening</strong> — coastal and island knowledge of the sea and gardens is still passed on.</li></ul><p>Buying crafts directly from makers or community markets supports livelihoods and helps keep these skills strong.</p></div></div>
+            <h3><button class="accordion-header" type="button" id="acc-practices" aria-expanded="false" aria-controls="panel-practices">Traditional practices &amp; crafts<span class="accordion-icon" aria-hidden="true">⌄</span></button></h3>
+            <div class="accordion-panel" id="panel-practices" role="region" aria-labelledby="acc-practices"><div class="accordion-content"><p>Many communities continue skills that shape everyday life and ceremony: pottery, weaving, carving, shell-work and fishing. These crafts reflect deep knowledge of materials and techniques, often tied to storytelling and cultural identity. Visitors who engage respectfully and pay fairly support the continuation of these practices and help younger generations stay connected to their heritage.</p></div></div>
           </div>
           <div class="accordion-item">
-            <h3><button class="accordion-header" type="button" id="acc-villages" aria-expanded="false" aria-controls="panel-villages">Village life &amp; languages<span class="accordion-icon" aria-hidden="true">▼</span></button></h3>
-            <div class="accordion-panel" id="panel-villages" role="region" aria-labelledby="acc-villages"><div class="accordion-content"><p>Madang’s cultural landscape is exceptionally varied. Mountain communities live on high ridges, river people build stilt houses, and coastal and island groups specialise in fishing and local trade.</p><p>Visitors are usually met with warmth. Simple Tok Pisin greetings such as “Gude” (good day) and “Tenkyu” (thank you) are appreciated. Always ask before photographing people or ceremonies.</p><p>Accessible villages and islands for cultural visits include Bilbil, Riwo, Siar, Kranket and communities around Madang harbour and the north coast.</p></div></div>
+            <h3><button class="accordion-header" type="button" id="acc-villages" aria-expanded="false" aria-controls="panel-villages">Village life &amp; languages<span class="accordion-icon" aria-hidden="true">⌄</span></button></h3>
+            <div class="accordion-panel" id="panel-villages" role="region" aria-labelledby="acc-villages"><div class="accordion-content"><p>Madang's cultural landscape is exceptionally varied. Inland mountain communities, coastal villages and island populations each have distinct languages, governance systems and customs. Many people speak Tok Pisin (the lingua franca of PNG) and English, but local languages remain central to identity. A small effort to learn a few words of greeting in the local language is deeply appreciated and opens doors to meaningful exchange.</p></div></div>
           </div>
           <div class="accordion-item">
-            <h3><button class="accordion-header" type="button" id="acc-responsible" aria-expanded="false" aria-controls="panel-responsible">Responsible tourism guidelines<span class="accordion-icon" aria-hidden="true">▼</span></button></h3>
-            <div class="accordion-panel" id="panel-responsible" role="region" aria-labelledby="acc-responsible"><div class="accordion-content"><p>Respectful travel protects culture and ensures communities benefit:</p><ul><li>Travel with reputable local operators who partner fairly with villages.</li><li>Ask permission before photographing people or ceremonies.</li><li>Dress modestly in villages (shoulders and knees covered is a good guide).</li><li>Buy crafts and produce directly from makers when possible.</li><li>Do not give money or gifts to children; support community projects through operators if you wish to contribute.</li><li>Take all rubbish with you and avoid single-use plastics where you can.</li><li>Listen to guides about sacred or restricted places.</li><li>Be patient — village time often runs differently from city clocks.</li></ul><p>Done well, cultural tourism provides income, pride and reasons to keep traditions strong for the next generation.</p></div></div>
+            <h3><button class="accordion-header" type="button" id="acc-responsible" aria-expanded="false" aria-controls="panel-responsible">Responsible tourism guidelines<span class="accordion-icon" aria-hidden="true">⌄</span></button></h3>
+            <div class="accordion-panel" id="panel-responsible" role="region" aria-labelledby="acc-responsible"><div class="accordion-content"><p>Respectful travel protects culture and ensures communities benefit from tourism. Always book through licensed local operators. Ask permission before photographing people or ceremonies. Dress modestly, especially in villages. Support local artisans by buying directly when possible. Don't treat cultural sites like museums or performances—engage as a guest and listener. Learn something about where you're going and the people you'll meet. Your presence should leave no trace of harm and a memory of respect.</p></div></div>
           </div>
         </div>
       </div>
@@ -144,15 +310,15 @@
       <div class="container">
         <p class="eyebrow eyebrow-dark">Places to begin</p>
         <h2 id="recommend-heading">Recommended sites to visit</h2>
-        <p class="section-lead">Scenic landmarks, nature reserves, islands and coastal stays — places that pair well with Madang’s cultural experiences.</p>
+        <p class="section-lead">Scenic landmarks, nature reserves, islands and coastal stays — places that pair well with Madang's cultural experiences.</p>
         <div class="recommend-grid">
-          <article class="recommend-card"><img src="images/Coast-Watchers-Light.jpg" alt="Coastwatchers Memorial Lighthouse overlooking Madang harbour"><div class="card-body"><h3>Coastwatchers Memorial Lighthouse</h3><p>A tall beacon built in 1959 on the peninsula to honour Allied coastwatchers of World War II. It offers panoramic views of the harbour and nearby islands.</p></div></article>
-          <article class="recommend-card"><img src="images/Machine-Gun-Beach.jpg" alt="Sandy shore and shade trees at Machine Gun Beach, Madang"><div class="card-body"><h3>Machine Gun Beach</h3><p>A quiet coastal park with a calm sandy beach, picnic spots under large shade trees, and a historic World War II machine gun left from the conflict.</p></div></article>
-          <article class="recommend-card"><img src="images/Balek-Wildlife-Sanctuary.jpg" alt="Sulphur stream and rainforest at Balek Wildlife Sanctuary"><div class="card-body"><h3>Balek Wildlife Sanctuary</h3><p>Along the south coast road: a sulphur hot-spring stream, large eels and turtles, limestone caves and surrounding rainforest — a short nature stop from town.</p></div></article>
-          <article class="recommend-card"><img src="images/Kranget-Island.webp" alt="Clear tropical water and coral at Pig Island and Kranket Island"><div class="card-body"><h3>Pig Island &amp; Kranket Island</h3><p>Idyllic offshore tropical islands with crystal-clear water and vibrant coral gardens. Popular for swimming, snorkelling and easy day trips from Madang.</p></div></article>
-          <article class="recommend-card"><img src="images/Siar-Island.webp" alt="Quiet beach and coastal village on Siar Island"><div class="card-body"><h3>Siar Island</h3><p>A tranquil local island connected by shallow waters. Great for day trips, walking along the beach and experiencing quiet coastal village life.</p></div></article>
-          <article class="recommend-card"><img src="images/Tabad-Island.jpg" alt="Turquoise water and white sand on Tabad Island near Riwo"><div class="card-body"><h3>Tabad Island</h3><p>A hidden paradise off the Riwo north coast: clear turquoise water, white sand and healthy reef. Uncommercialised — pack food and water, arrange a banana boat from Riwo, and respect local access guidelines.</p></div></article>
-          <article class="recommend-card"><img src="images/Jais-aben-resort.jpg" alt="Beachfront bungalows and lawns at Jais Aben Resort on the north coast"><div class="card-body"><h3>Jais Aben Resort</h3><p>A waterfront retreat about 20 km north of town on a former coconut plantation. Beachfront bungalows, healthy fringing reef, a WWII plane wreck just offshore and grounds for kayaking and sunset views.</p></div></article>
+          <article class="recommend-card"><img src="images/Coast-Watchers-Light.jpg" alt="Coastwatchers Memorial Lighthouse overlooking Madang harbour"><div class="card-body"><h3>Coastwatchers Memorial Lighthouse</h3><p>Historic WWII landmark with panoramic views over Madang Harbour and the surrounding islands. A short walk uphill rewarded with stunning coastal vistas.</p></div></article>
+          <article class="recommend-card"><img src="images/Machine-Gun-Beach.jpg" alt="Sandy shore and shade trees at Machine Gun Beach, Madang"><div class="card-body"><h3>Machine Gun Beach</h3><p>A peaceful, sandy coastal strip ideal for swimming and relaxation. Named after remnants from WWII history. Good for snorkelling and exploring the nearby reef.</p></div></article>
+          <article class="recommend-card"><img src="images/Balek-Wildlife-Sanctuary.jpg" alt="Sulphur stream and rainforest at Balek Wildlife Sanctuary"><div class="card-body"><h3>Balek Wildlife Sanctuary</h3><p>A pristine rainforest reserve with a dramatic sulphur stream. Home to diverse bird life and unique vegetation. Accessible via hiking trail.</p></div></article>
+          <article class="recommend-card"><img src="images/Kranget-Island.webp" alt="Clear tropical water and coral at Pig Island and Kranket Island"><div class="card-body"><h3>Pig Island &amp; Kranket Island</h3><p>Twin islands reached by boat. Pristine coral reefs, clear water and white-sand beaches. Excellent for snorkelling and a day trip from Madang town.</p></div></article>
+          <article class="recommend-card"><img src="images/Siar-Island.webp" alt="Quiet beach and coastal village on Siar Island"><div class="card-body"><h3>Siar Island</h3><p>A tranquil local island with a small village. Offers an intimate glimpse of island life and opportunity to visit a cultural site with local guides.</p></div></article>
+          <article class="recommend-card"><img src="images/Tabad-Island.jpg" alt="Turquoise water and white sand on Tabad Island near Riwo"><div class="card-body"><h3>Tabad Island</h3><p>A hidden jewel with stunning turquoise water and powder-soft sand. Great for swimming, snorkelling and picnicking. Accessible from nearby Riwo village.</p></div></article>
+          <article class="recommend-card"><img src="images/Jais-aben-resort.jpg" alt="Beachfront bungalows and lawns at Jais Aben Resort on the north coast"><div class="card-body"><h3>Jais Aben Resort</h3><p>A beachfront eco-resort and cultural hub on the north coast. Offers accommodation, restaurant, and can arrange guided experiences and tours.</p></div></article>
         </div>
       </div>
     </section>
