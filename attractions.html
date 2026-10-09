@@ -8,7 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="css/styles.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 <body class="attractions-page">
@@ -66,9 +68,25 @@
             <input type="checkbox" id="saved-only">
             Show saved only
           </label>
-          <p id="result-count" aria-live="polite">6 attractions found</p>
+          <p id="result-count" aria-live="polite">10 attractions found</p>
         </form>
         <div id="details-panel" class="details-panel" aria-live="polite" hidden></div>
+      </div>
+    </section>
+
+    <section class="section attraction-map-section" aria-labelledby="attraction-map-heading">
+      <div class="container">
+        <div class="attraction-map-heading">
+          <div>
+            <p class="eyebrow eyebrow-dark">Find your next stop</p>
+            <h2 id="attraction-map-heading">Attraction map</h2>
+            <p id="map-selection" aria-live="polite">Showing Madang, Papua New Guinea. Select an attraction photo or its map button to locate it.</p>
+          </div>
+          <a id="map-directions" class="button map-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Madang%2C%20Papua%20New%20Guinea" target="_blank" rel="noopener noreferrer">Open directions</a>
+        </div>
+        <div class="attraction-map-frame">
+          <div id="attraction-map" role="application" aria-label="Interactive map of Madang attractions. Drag to pan and use the mouse wheel or plus and minus controls to zoom."></div>
+        </div>
       </div>
     </section>
 
@@ -81,34 +99,54 @@
           </div>
         </div>
         <div class="attraction-grid" id="attractions-list">
-          <article class="card attraction-card" data-category="diving" data-save-id="reef-and-wrecks">
-            <div class="card-image-wrap">
-              <img src="images/attraction-2.jpg" alt="Divers exploring a reef and wreck in Madang waters" loading="lazy">
+          <article class="card attraction-card" data-category="diving" data-save-id="reef-and-wrecks" data-map-query="-5.266667,145.833333">
+            <button class="card-image-wrap map-location-trigger" type="button" aria-label="Show Planet Rock Reef Dive on the map">
+              <img src="images/attraction-2.jpg" alt="Reef and wreck dive in Madang waters" loading="lazy">
               <span class="card-tag">Diving</span>
-            </div>
+            </button>
             <div class="card-body">
               <div class="card-meta"><span>01</span><span>Intermediate</span></div>
-              <h3>Madang Reef &amp; Wrecks</h3>
-              <p>Explore coral gardens, reef walls and scattered WWII wrecks in clear tropical waters.</p>
+              <h3>Planet Rock Reef Dive</h3>
+              <p>Take a boat dive to Planet Rock, an offshore volcanic seamount known for its steep coral pinnacle and schooling pelagic fish.</p>
               <div class="card-actions">
                 <button class="save-button" type="button" data-save-id="reef-and-wrecks" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
-                <button class="button view-details" type="button" data-details="Madang Reef & Wrecks combines colorful reef dives with wartime wrecks in calm, clear waters.">View details</button>
+                <button class="button show-on-map" type="button">Show on map</button>
+                <button class="button view-details" type="button" data-details="Planet Rock is a named offshore seamount dive site near Madang. Its underwater pinnacle rises from deep water, attracting pelagic fish and sharks. This exposed site is reached by boat; diving conditions and access should be checked with a local dive operator.">View details</button>
               </div>
             </div>
           </article>
 
-          <article class="card attraction-card" data-category="diving" data-save-id="lagoon-dive">
-            <div class="card-image-wrap">
-              <img src="images/attraction-1.jpg" alt="Coral lagoon and clear dive water in Madang" loading="lazy">
+          <article class="card attraction-card" data-category="diving" data-save-id="wwii-sites">
+            <button class="card-image-wrap map-location-trigger" type="button" data-map-query="-5.21,145.85" data-map-title="B-25 Mitchell bomber wreck area, off Wongat Island (approximate)" aria-label="Show the B-25 bomber wreck area on the map">
+              <img src="images/attraction-2.jpg" alt="Madang WWII wreck-dive site" loading="lazy">
               <span class="card-tag">Diving</span>
+            </button>
+            <div class="card-body">
+              <div class="card-meta"><span>03</span><span>Boat dives</span></div>
+              <h3>WWII Wreck Dives</h3>
+              <p>Explore the WWII B-25 Mitchell bomber wreck off Wongat Island (15–22 m) and the FS-172 U.S. Army freight-ship wreck near Cape Croisilles (about 30 m). Map pins show approximate areas, not exact wreck positions; arrange these boat dives with a local operator.</p>
+              <div class="card-actions">
+                <button class="save-button" type="button" data-save-id="wwii-sites" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button show-on-map" type="button" data-map-query="-5.21,145.85" data-map-title="B-25 Mitchell bomber wreck area, off Wongat Island (approximate)">Map B-25 Bomber</button>
+                <button class="button show-on-map" type="button" data-map-query="-4.85,145.8" data-map-title="FS-172 wreck area near Cape Croisilles (approximate)">Map FS-172 Wreck</button>
+                <button class="button view-details" type="button" data-details="The B-25 Mitchell bomber made an emergency ditching near Wongat Island during World War II and now rests at about 15–22 metres. The wreck near Cape Croisilles is the U.S. Army freight ship FS-172, long referred to locally as USS Boston; that USS Boston identification is incorrect. The map pins indicate approximate areas only. Confirm the exact wreck positions, access, conditions and required experience with a Madang dive operator.">View details</button>
+              </div>
             </div>
+          </article>
+
+          <article class="card attraction-card" data-category="diving" data-save-id="lagoon-dive" data-map-query="-5.186667,145.826667" data-map-title="Magic Passage, Madang">
+            <button class="card-image-wrap map-location-trigger" type="button" aria-label="Show Magic Passage dive site on the map">
+              <img src="images/attraction-1.jpg" alt="Coral and clear water at a Madang dive site" loading="lazy">
+              <span class="card-tag">Diving</span>
+            </button>
             <div class="card-body">
               <div class="card-meta"><span>02</span><span>Beginner</span></div>
-              <h3>Lagoon Drift Dive</h3>
-              <p>Float above shallow reef shelves where colorful fish, coral bommies and warm water make every moment easy and scenic.</p>
+              <h3>Magic Passage Dive</h3>
+              <p>Dive a channel between Kranket and Paeowai islands, known for coral and schooling fish; currents can vary with the tide.</p>
               <div class="card-actions">
                 <button class="save-button" type="button" data-save-id="lagoon-dive" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
-                <button class="button view-details" type="button" data-details="Lagoon Drift Dive is a gentler snorkelling and diving option with bright reef life close to shore.">View details</button>
+                <button class="button show-on-map" type="button">Show on map</button>
+                <button class="button view-details" type="button" data-details="Magic Passage is a named dive site in Madang Province, in the channel between Kranket Island and Paeowai Island. The site is around 25–30 metres deep and tidal currents can vary. Confirm sea conditions and access with a local dive operator before diving.">View details</button>
               </div>
             </div>
           </article>
@@ -125,53 +163,40 @@
           </div>
         </div>
         <div class="attraction-grid">
-          <article class="card attraction-card" data-category="islands" data-save-id="bilbil-island">
-            <div class="card-image-wrap">
+          <article class="card attraction-card" data-category="islands" data-save-id="bilbil-island" data-map-query="-5.2881955,145.7636935" data-map-title="Bilbil pottery village, Madang">
+            <button class="card-image-wrap map-location-trigger" type="button" aria-label="Show Bilbil Island on the map">
               <img src="images/attraction-1.jpg" alt="Bilbil Island and its calm tropical shore" loading="lazy">
               <span class="card-tag">Island</span>
-            </div>
+            </button>
             <div class="card-body">
               <div class="card-meta"><span>02</span><span>Half-day</span></div>
               <h3>Bilbil Island</h3>
               <p>Known for pottery-making and easygoing coastal charm, Bilbil offers a relaxed island experience.</p>
               <div class="card-actions">
                 <button class="save-button" type="button" data-save-id="bilbil-island" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button show-on-map" type="button">Show on map</button>
                 <button class="button view-details" type="button" data-details="Bilbil Island is ideal for a slower-paced island trip with craft communities and tranquil beaches.">View details</button>
               </div>
             </div>
           </article>
 
-          <article class="card attraction-card" data-category="islands" data-save-id="kranket-island">
-            <div class="card-image-wrap">
-              <img src="images/attraction-3.jpg" alt="A sandy island shore surrounded by clear ocean and tropical greenery" loading="lazy">
+          <article class="card attraction-card" data-category="islands" data-save-id="kranket-island" data-map-query="-5.1976267,145.8231134">
+            <button class="card-image-wrap map-location-trigger" type="button" aria-label="Show Kranket Island on the map">
+              <img src="images/Kranget-Island.webp" alt="Kranket Island shore surrounded by clear ocean" loading="lazy">
               <span class="card-tag">Island</span>
-            </div>
+            </button>
             <div class="card-body">
               <div class="card-meta"><span>03</span><span>Day trip</span></div>
               <h3>Kranket Island</h3>
               <p>Drop into sandy coves, swim in clear waters and enjoy a full day of coastal relaxation.</p>
               <div class="card-actions">
                 <button class="save-button" type="button" data-save-id="kranket-island" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button show-on-map" type="button">Show on map</button>
                 <button class="button view-details" type="button" data-details="Kranket Island offers beach time, snorkelling and boat access to quiet coves.">View details</button>
               </div>
             </div>
           </article>
 
-          <article class="card attraction-card" data-category="islands" data-save-id="barrier-islet">
-            <div class="card-image-wrap">
-              <img src="images/hero-madang.jpg" alt="Coastal island scenery near Madang" loading="lazy">
-              <span class="card-tag">Island</span>
-            </div>
-            <div class="card-body">
-              <div class="card-meta"><span>04</span><span>Sunset</span></div>
-              <h3>Barrier Islet</h3>
-              <p>A quiet island stop for sunset swims, ocean views and slow evenings close to the reef edge.</p>
-              <div class="card-actions">
-                <button class="save-button" type="button" data-save-id="barrier-islet" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
-                <button class="button view-details" type="button" data-details="Barrier Islet is a scenic stop for beach walks, snorkelling and golden-hour views.">View details</button>
-              </div>
-            </div>
-          </article>
         </div>
       </div>
     </section>
@@ -185,34 +210,36 @@
           </div>
         </div>
         <div class="attraction-grid">
-          <article class="card attraction-card" data-category="history" data-save-id="wwii-sites">
-            <div class="card-image-wrap">
-              <img src="images/attraction-2.jpg" alt="Historic coastal area linked to WWII sites in Madang" loading="lazy">
+          <article class="card attraction-card" data-category="history" data-save-id="kalibobo-lighthouse" data-map-query="-5.2124353,145.8148396" data-map-title="Coastwatchers Memorial, Madang">
+            <button class="card-image-wrap map-location-trigger" type="button" aria-label="Show Kalibobo Lighthouse on the map">
+              <img src="images/Lighthouse.jpg" alt="Kalibobo Lighthouse, the Coastwatchers Memorial in Madang" loading="lazy">
               <span class="card-tag">History</span>
-            </div>
+            </button>
             <div class="card-body">
-              <div class="card-meta"><span>04</span><span>Half-day</span></div>
-              <h3>WWII Sites</h3>
-              <p>Walk through wartime memorials and coastal sites that still tell the story of the Pacific campaign.</p>
+              <div class="card-meta"><span>06</span><span>Landmark</span></div>
+              <h3>Kalibobo Lighthouse</h3>
+              <p>Also known as the Coastwatchers Memorial, this Madang landmark commemorates the coastwatchers of World War II and looks across the harbour.</p>
               <div class="card-actions">
-                <button class="save-button" type="button" data-save-id="wwii-sites" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
-                <button class="button view-details" type="button" data-details="Madang's WWII sites include memorials, wreck remnants and historical coastal viewpoints.">View details</button>
+                <button class="save-button" type="button" data-save-id="kalibobo-lighthouse" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button show-on-map" type="button">Show on map</button>
+                <button class="button view-details" type="button" data-details="Kalibobo Lighthouse is mapped as the Coastwatchers Memorial on Coronation Drive in Madang. It commemorates the coastwatchers' role during World War II; Japanese forces occupied Madang in 1942, and Australian forces recaptured the town in April 1944.">View details</button>
               </div>
             </div>
           </article>
 
-          <article class="card attraction-card" data-category="history" data-save-id="coastwatchers-trail">
-            <div class="card-image-wrap">
-              <img src="images/attraction-3.jpg" alt="Historic site walk with scenic Madang coastline" loading="lazy">
+          <article class="card attraction-card" data-category="history" data-save-id="machine-gun-beach" data-map-query="-5.2254482,145.8069503">
+            <button class="card-image-wrap map-location-trigger" type="button" aria-label="Show Machine Gun Beach on the map">
+              <img src="images/machine gun.jpg" alt="Machine Gun Beach on Coronation Drive in Madang" loading="lazy">
               <span class="card-tag">History</span>
-            </div>
+            </button>
             <div class="card-body">
-              <div class="card-meta"><span>05</span><span>Guided</span></div>
-              <h3>Coastwatchers Trail</h3>
-              <p>Follow local stories of wartime strategy, resilience and the coastal communities that shaped the region.</p>
+              <div class="card-meta"><span>07</span><span>Coastal landmark</span></div>
+              <h3>Machine Gun Beach</h3>
+              <p>A coastal spot on Coronation Drive, known for its World War II military-history connection and as a place to enjoy Madang's waterfront.</p>
               <div class="card-actions">
-                <button class="save-button" type="button" data-save-id="coastwatchers-trail" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
-                <button class="button view-details" type="button" data-details="The Coastwatchers Trail shares the human side of the Pacific campaign with local context and storytelling.">View details</button>
+                <button class="save-button" type="button" data-save-id="machine-gun-beach" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
+                <button class="button show-on-map" type="button">Show on map</button>
+                <button class="button view-details" type="button" data-details="Machine Gun Beach is a mapped coastal attraction on Coronation Drive, Madang. Its name is associated with World War II military remnants along this coast.">View details</button>
               </div>
             </div>
           </article>
@@ -229,50 +256,55 @@
           </div>
         </div>
         <div class="attraction-grid">
-          <article class="card attraction-card" data-category="nature" data-save-id="rainforest-trails">
-            <div class="card-image-wrap">
-              <img src="images/attraction-3.jpg" alt="Lush rainforest trail in Madang Province" loading="lazy">
+          <article class="card attraction-card" data-category="nature" data-save-id="rainforest-trails" data-map-query="-5.317904,145.722797" data-map-title="Balek Wildlife Sanctuary, Madang">
+            <button class="card-image-wrap map-location-trigger" type="button" aria-label="Show Balek Wildlife Sanctuary on the map">
+              <img src="images/Balek-Wildlife-Sanctuary.jpg" alt="Rainforest habitat at Balek Wildlife Sanctuary near Madang" loading="lazy">
               <span class="card-tag">Nature</span>
-            </div>
+            </button>
             <div class="card-body">
               <div class="card-meta"><span>05</span><span>Easy</span></div>
-              <h3>Rainforest Trails</h3>
-              <p>Wander through cool rainforest paths, listen to birdlife and soak in the landscape beyond the shore.</p>
+              <h3>Balek Sanctuary Walk</h3>
+              <p>Explore the rainforest setting, sulfur spring and limestone cave at Balek Wildlife Sanctuary, about 20 km from Madang on the Madang-Ramu Highway.</p>
               <div class="card-actions">
                 <button class="save-button" type="button" data-save-id="rainforest-trails" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
-                <button class="button view-details" type="button" data-details="Rainforest trails offer freshwater air, birdsong and easy scenic walks for nature lovers.">View details</button>
+                <button class="button show-on-map" type="button">Show on map</button>
+                <button class="button view-details" type="button" data-details="Balek Wildlife Sanctuary is on the Madang-Ramu Highway, roughly 20 km from Madang. Visitors can explore the rainforest grounds and see the sulfur spring and limestone cave. Check local access arrangements before visiting.">View details</button>
               </div>
             </div>
           </article>
 
           <article class="card attraction-card" data-category="nature" data-save-id="craft-villages">
-            <div class="card-image-wrap">
-              <img src="images/attraction-1.jpg" alt="Community craft activity in a village setting in Madang" loading="lazy">
+            <button class="card-image-wrap map-location-trigger" type="button" aria-label="Show Craft Villages on the map">
+              <img src="images/Siar-Island.webp" alt="Siar Island village in Madang Province" loading="lazy">
               <span class="card-tag">Culture</span>
-            </div>
+            </button>
             <div class="card-body">
               <div class="card-meta"><span>06</span><span>Half-day</span></div>
               <h3>Craft Villages</h3>
-              <p>Meet locals, learn traditional artforms and enjoy a cultural visit filled with stories and craftsmanship.</p>
+              <p>Bilbil and Yabob villages are known for Madang's traditional hand-built pottery, a craft passed down through generations.</p>
               <div class="card-actions">
                 <button class="save-button" type="button" data-save-id="craft-villages" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
-                <button class="button view-details" type="button" data-details="Craft villages share local design, traditional knowledge and warm community hospitality.">View details</button>
+                <button class="button show-on-map" type="button" data-map-title="Bilbil Village" data-map-query="-5.2881955,145.7636935">Map Bilbil Village</button>
+                <button class="button show-on-map" type="button" data-map-title="Yabob Village" data-map-query="-5.253145,145.7794144">Map Yabob Village</button>
+                <button class="button view-details" type="button" data-details="Bilbil and Yabob are coastal villages in Madang District with a long tradition of hand-built clay pottery. Pottery-making skills have been passed down through generations. Arrange visits respectfully with local communities.">View details</button>
               </div>
             </div>
           </article>
 
-          <article class="card attraction-card" data-category="nature" data-save-id="birdwatching">
-            <div class="card-image-wrap">
-              <img src="images/hero-madang.jpg" alt="Birdwatching route and forest scenery in Madang" loading="lazy">
+          <article class="card attraction-card" data-category="nature" data-save-id="birdwatching" data-map-query="-5.1469486,145.7794581">
+            <button class="card-image-wrap birdwatching-image-wrap map-location-trigger" type="button" aria-label="Show Baitabag Rain Forest birdwatching area on the map">
+              <img src="images/Hook-billed-Kingfisher-Papua-NG.jpg" alt="Hook-billed Kingfisher, a Papua New Guinea bird; representative image not confirmed as photographed in Madang" loading="lazy">
               <span class="card-tag">Nature</span>
-            </div>
+            </button>
             <div class="card-body">
               <div class="card-meta"><span>07</span><span>Morning</span></div>
-              <h3>Birdwatching Loop</h3>
-              <p>Start early to catch forest birds, misty trails and the sound of the region waking up around you.</p>
+              <h3>Baitabag Rain Forest Birdwatching</h3>
+              <p>Explore the Baitabag Rain Forest – Kau Village birding area, listed by eBird in Madang, for lowland rainforest and local birdlife.</p>
+              <p class="image-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Hook-billed_Kingfisher_-_Papua_NG_HOOK_BI9_(16317963765).jpg" target="_blank" rel="noopener noreferrer">Francesco Veronesi, “Hook-billed Kingfisher - Papua NG”</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a>.</p>
               <div class="card-actions">
                 <button class="save-button" type="button" data-save-id="birdwatching" aria-pressed="false"><span aria-hidden="true">♡</span> <span>Save</span></button>
-                <button class="button view-details" type="button" data-details="The birdwatching loop is ideal for early travellers who want a calm, scenic morning in nature.">View details</button>
+                <button class="button show-on-map" type="button">Show on map</button>
+                <button class="button view-details" type="button" data-details="Baitabag Rain Forest – Kau Village is an eBird-listed birding area in Madang. The map points to the mapped Baitabag village location. The kingfisher photo is a representative Papua New Guinea image; its photographer did not identify it as taken at Baitabag or in Madang. Check local access arrangements before visiting.">View details</button>
               </div>
             </div>
           </article>

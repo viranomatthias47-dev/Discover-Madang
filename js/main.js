@@ -146,8 +146,75 @@
   const categoryButtons = document.querySelectorAll('.filter-buttons .button[data-category]');
   const resultCount = document.getElementById('result-count');
   const detailsPanel = document.getElementById('details-panel');
+  const attractionMap = document.getElementById('attraction-map');
+  const mapSelection = document.getElementById('map-selection');
+  const mapDirections = document.getElementById('map-directions');
+  const madangMap = attractionMap && window.L
+    ? window.L.map(attractionMap, { scrollWheelZoom: true }).setView([-5.217, 145.79], 11)
+    : null;
+  const mapMarkers = new Map();
+
+  if (madangMap) {
+    window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>'
+    }).addTo(madangMap);
+  } else if (attractionMap && mapSelection) {
+    mapSelection.textContent = 'The interactive map could not load. Use Open directions to view Madang in Google Maps.';
+  }
+
+  const updateMapLocationText = (title, latitude, longitude) => {
+    if (mapSelection) {
+      mapSelection.textContent = `Showing ${title} at ${latitude.toFixed(6)}, ${longitude.toFixed(6)}. Drag the map to explore nearby.`;
+    }
+    if (mapDirections) {
+      const destination = `${latitude},${longitude}`;
+      const directionsQuery = new URLSearchParams({ api: '1', destination });
+      mapDirections.href = `https://www.google.com/maps/dir/?${directionsQuery.toString()}`;
+    }
+  };
+
+  const showMapLocation = (title, latitude, longitude, zoom = 15) => {
+    if (!madangMap) return;
+
+    const location = window.L.latLng(latitude, longitude);
+    madangMap.flyTo(location, zoom);
+    const marker = mapMarkers.get(`${latitude},${longitude}`);
+    if (marker) marker.openPopup();
+    updateMapLocationText(title, latitude, longitude);
+  };
 
   if (attractionCards.length) {
+    if (madangMap) {
+      attractionCards.forEach((card) => {
+        const title = card.dataset.mapTitle || card.querySelector('h3')?.textContent?.trim();
+        const cardCoordinates = card.dataset.mapQuery;
+        const locationButtons = cardCoordinates
+          ? [{ title, coordinates: cardCoordinates }]
+          : Array.from(card.querySelectorAll('.show-on-map[data-map-query]'), (button) => ({
+              title: button.dataset.mapTitle || title,
+              coordinates: button.dataset.mapQuery
+            }));
+
+        locationButtons.forEach(({ title: locationTitle, coordinates }) => {
+          const parsedCoordinates = coordinates?.match(/^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$/);
+          if (!locationTitle || !parsedCoordinates) return;
+
+          const latitude = Number(parsedCoordinates[1]);
+          const longitude = Number(parsedCoordinates[2]);
+          const marker = window.L.marker([latitude, longitude])
+            .addTo(madangMap)
+            .bindPopup(`<strong>${locationTitle}</strong><br>${latitude.toFixed(5)}, ${longitude.toFixed(5)}`);
+          marker.on('click', () => updateMapLocationText(locationTitle, latitude, longitude));
+          mapMarkers.set(`${coordinates}`, marker);
+        });
+      });
+
+      const markerBounds = window.L.featureGroup(Array.from(mapMarkers.values())).getBounds();
+      if (markerBounds.isValid()) madangMap.fitBounds(markerBounds, { padding: [28, 28], maxZoom: 12 });
+      window.setTimeout(() => madangMap.invalidateSize(), 0);
+    }
+
     let activeCategory = 'all';
 
     const updateCategoryButtons = () => {
@@ -194,6 +261,27 @@
     if (savedOnlyToggle) {
       savedOnlyToggle.addEventListener('change', applyFilters);
     }
+
+    document.querySelectorAll('.map-location-trigger, .show-on-map').forEach((button) => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.attraction-card');
+        const title = card?.querySelector('h3')?.textContent?.trim();
+        if (!title || !attractionMap) return;
+
+        const mapTitle = button.dataset.mapTitle || card.dataset.mapTitle || title;
+        const exactLocation = button.dataset.mapQuery || card.dataset.mapQuery;
+        const coordinates = exactLocation?.match(/^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$/);
+        if (coordinates) {
+          const latitude = Number(coordinates[1]);
+          const longitude = Number(coordinates[2]);
+          showMapLocation(mapTitle, latitude, longitude, mapTitle.toLowerCase().includes('planet rock') ? 11 : 15);
+        } else if (mapSelection) {
+          mapSelection.textContent = `Map coordinates are not available for ${mapTitle}.`;
+        }
+
+        document.getElementById('attraction-map-heading')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
 
     document.querySelectorAll('.view-details').forEach((button) => {
       button.addEventListener('click', () => {

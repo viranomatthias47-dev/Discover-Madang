@@ -18,7 +18,7 @@ This project was completed by a team of six members, with each person contributi
 Discover Madang is a responsive tourism website designed to showcase the beauty, culture, and experiences available in Madang Province. The site includes:
 
 - A welcoming homepage
-- An attractions section with filtering and saved favourites
+- An attractions section with filtering, saved favourites and an interactive Leaflet/OpenStreetMap view
 - A culture and experiences page highlighting local traditions and activities
 - A contact page with enquiry form validation
 - A trip-planning guide

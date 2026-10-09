@@ -126,10 +126,13 @@ p { margin: 0; }
 @media (hover: hover) {
   .card:hover { box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15); border-color: var(--primary); z-index: 10; }
 }
-.card-image-wrap { position: relative; height: 230px; overflow: hidden; background: var(--sand); }
+.card-image-wrap { position: relative; display: block; width: 100%; height: 230px; padding: 0; overflow: hidden; color: inherit; background: var(--sand); border: 0; border-radius: 0; cursor: pointer; text-align: left; }
 .card-image-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 180ms ease; }
+.birdwatching-image-wrap img { object-fit: contain; }
 .card:hover .card-image-wrap img,
 .card:focus-within .card-image-wrap img { transform: scale(1.04); }
+.card:hover .birdwatching-image-wrap img,
+.card:focus-within .birdwatching-image-wrap img { transform: none; }
 .card-tag { position: absolute; top: 1rem; left: 1rem; padding: 0.35rem 0.65rem; color: var(--dark); background: var(--accent); font-size: 0.7rem; font-weight: 700; border-radius: 3px; transition: transform 180ms ease, box-shadow 180ms ease; transform-origin: top left; }
 .card:hover .card-tag,
 .card:focus-within .card-tag { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); }
@@ -159,9 +162,11 @@ p { margin: 0; }
 .saved-toggle { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.92rem; font-weight: 600; color: var(--surface-text); }
 .saved-toggle input { width: 1rem; height: 1rem; accent-color: var(--primary); cursor: pointer; }
 #result-count { margin: 0; color: var(--muted); font-size: 0.85rem; font-weight: 600; }
-.card-actions { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: var(--space-3); }
+.card-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: var(--space-3); }
 .view-details { min-height: 2.5rem; padding: 0.45rem 0.8rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--light); color: var(--surface-text); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 200ms ease; }
 .view-details:hover { background: var(--primary); color: var(--dark); border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(242, 183, 5, 0.3); }
+.show-on-map { min-height: 2.5rem; padding: 0.45rem 0.7rem; color: var(--surface-link); background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+.show-on-map:hover { background: var(--primary); color: var(--dark); border-color: var(--primary); }
 .details-panel { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid #D5B52E; border-radius: var(--radius); background: var(--sand); color: var(--text); animation: slideDown 300ms ease; }
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); }
@@ -169,6 +174,16 @@ p { margin: 0; }
 }
 .details-panel h3 { margin-bottom: 0.5rem; color: var(--surface-text); }
 .details-panel p { margin: 0; color: var(--surface-muted); }
+
+.attraction-map-section { padding-top: var(--space-5); }
+.attraction-map-heading { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
+.attraction-map-heading h2 { margin-bottom: 0.75rem; }
+.attraction-map-heading p:last-child { max-width: 640px; color: var(--muted); }
+.map-directions { color: var(--surface-text); background: var(--primary); text-decoration: none; }
+.attraction-map-frame { height: clamp(360px, 55vw, 600px); overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); background: var(--sand); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); }
+#attraction-map { width: 100%; height: 100%; background: #e7f1f4; }
+.leaflet-container { color: #25302A; font: 0.875rem/1.5 'Open Sans', sans-serif; }
+.leaflet-control-attribution { font-size: 0.68rem; }
 
 .contact-section { padding-top: var(--space-7); }
 .contact-grid { display: grid; gap: var(--space-7); }
